@@ -1,7 +1,9 @@
 export interface CompanyDetail {
-  CompanyName: string;
-  CompanyIndustry: string;
-  CompanySize: number;
-  YearFounded: number;
-  Location: string;
+  companyName: string;
+  companyIndustry: string;
+  companySize: number;
+  yearFounded: number;
+  city: string;
+  state: string;
+  description: string;
 }

@@ -1,8 +1,150 @@
 {
-  "targetCompanies": [
+  "target-companies": [
     {
       "id": 1,
-      "name": "Company 1"
+      "status": "Researching",
+      "companyDetails": {
+        "companyName": "Loogle",
+        "companyIndustry": "Information Technology",
+        "companySize": "1000+",
+        "yearFounded": "2000",
+        "city": "Atlanta",
+        "state": "GA"
+      },
+      "companyFinancials": {},
+      "keyContacts": [
+        {
+          "id": 1,
+          "name": "John Doe",
+          "phone": 5554239493,
+          "email": "john.doe@lougle.com"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "status": "Approved",
+      "companyDetails": {
+        "companyName": "Google",
+        "companyIndustry": "Information Technology",
+        "companySize": "100,000+",
+        "yearFounded": "1991",
+        "city": "San Jose",
+        "state": "CA"
+      },
+      "companyFinancials": {},
+      "keyContacts": [
+        {
+          "id": 1,
+          "name": "John Doe",
+          "phone": 5554239493,
+          "email": "john.doe@google.com"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "status": "Approved",
+      "companyDetails": {
+        "companyName": "Google",
+        "companyIndustry": "Information Technology",
+        "companySize": "100,000+",
+        "yearFounded": "1991",
+        "city": "San Jose",
+        "state": "CA"
+      },
+      "companyFinancials": {},
+      "keyContacts": [
+        {
+          "id": 1,
+          "name": "John Doe",
+          "phone": 5554239493,
+          "email": "john.doe@google.com"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "status": "Pending Approval",
+      "companyDetails": {
+        "companyName": "Google",
+        "companyIndustry": "Information Technology",
+        "companySize": "100,000+",
+        "yearFounded": "1991",
+        "city": "San Jose",
+        "state": "CA"
+      },
+      "companyFinancials": {},
+      "keyContacts": [
+        {
+          "id": 1,
+          "name": "John Doe",
+          "phone": 5554239493,
+          "email": "john.doe@google.com"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "status": "Declined",
+      "companyDetails": {
+        "companyName": "Google",
+        "companyIndustry": "Information Technology",
+        "companySize": "100,000+",
+        "yearFounded": "1991",
+        "city": "San Jose",
+        "state": "CA"
+      },
+      "companyFinancials": {},
+      "keyContacts": [
+        {
+          "id": 1,
+          "name": "John Doe",
+          "phone": 5554239493,
+          "email": "john.doe@google.com"
+        }
+      ]
     }
+  ],
+  "industries": [
+    "Aerospace",
+    "Agriculture",
+    "Fishing",
+    "Timber",
+    "Tobacco",
+    "Pharmaceutical",
+    "Software",
+    "Consulting",
+    "Construction",
+    "Defense",
+    "Education",
+    "Energy",
+    "Electrical power",
+    "Petroleum",
+    "Entertainment",
+    "Financial services",
+    "Insurance",
+    "Food",
+    "Fruit production",
+    "Health care",
+    "Hospitality",
+    "Information",
+    "Manufacturing",
+    "Automotive",
+    "Electronics",
+    "Pulp and paper",
+    "Steel",
+    "Shipbuilding",
+    "Mass media",
+    "Film",
+    "Music",
+    "News media",
+    "Publishing",
+    "Mining",
+    "Telecommunications",
+    "Transport",
+    "Water",
+    "Service",
+    "Other"
   ]
 }

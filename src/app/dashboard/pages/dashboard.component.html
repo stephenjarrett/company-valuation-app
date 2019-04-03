@@ -1,0 +1,28 @@
+<div class="container mt-4">
+  <mat-card *ngFor="let company of targetCompanies" class="company-card">
+    <mat-card-header class="flex-column">
+      <div class="h2 p-2">
+        <a [routerLink]="['./company/details', company.id]">
+          {{ company.companyDetails.companyName }}
+        </a>
+      </div>
+    </mat-card-header>
+    <mat-divider></mat-divider>
+    <div class="h4 mt-1 p2">Status: {{ company.status }}</div>
+    <mat-divider></mat-divider>
+    <mat-card-subtitle> </mat-card-subtitle>
+    <mat-card-content>
+      <ul class="p-2">
+        <li>
+          {{ company.companyDetails.companyIndustry }}
+        </li>
+        <li>
+          {{ company.companyDetails.companySize }}
+        </li>
+        <li>
+          {{ company.companyDetails.city }}, {{ company.companyDetails.state }}
+        </li>
+      </ul>
+    </mat-card-content>
+  </mat-card>
+</div>

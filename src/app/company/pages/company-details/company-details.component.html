@@ -1,0 +1,130 @@
+<div class="container mt-5">
+  <form [formGroup]="companyDetailForm">
+    <mat-card>
+      <mat-card-content class="flex">
+        <div class="row">
+          <mat-form-field appearance="standard" class="col">
+            <mat-label>*Company Name</mat-label>
+            <input
+              #inputCompanyNameRef
+              formControlName="companyName"
+              matInput
+              [readonly]="showEdit"
+            />
+            <mat-error *ngIf="companyName.hasError('required')"
+              >Company name is required</mat-error
+            >
+            <mat-error *ngIf="companyName.hasError('maxlength')"
+              >Maximum of 100 characters</mat-error
+            >
+            <!-- <mat-error *ngIf="companyName.hasError('companyNameInUse')">{{
+              companyName.getError('companyNameInUse').value
+            }}</mat-error> -->
+          </mat-form-field>
+          <mat-form-field appearance="standard" class="col">
+            <mat-label>*Valuation Status</mat-label>
+            <mat-select formControlName="status" matInput [disabled]="showEdit">
+              <mat-option>--</mat-option>
+              <mat-option
+                *ngFor="let option of statusOptions"
+                [value]="option"
+                >{{ option }}</mat-option
+              >
+            </mat-select>
+            <mat-error *ngIf="status.hasError('required')">
+              Status is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="row">
+          <mat-form-field appearance="standard" class="col">
+            <mat-label>*Industry</mat-label>
+            <input
+              formControlName="industry"
+              matInput
+              [readonly]="showEdit"
+              [matAutocomplete]="autoIndustry"
+            />
+            <mat-autocomplete #autoIndustry="matAutocomplete">
+              <mat-option
+                *ngFor="let option of (filteredIndustries | async)"
+                [value]="option"
+              >
+                {{ option }}
+              </mat-option>
+            </mat-autocomplete>
+            <mat-error *ngIf="industry.hasError('required')"
+              >Industry is required</mat-error
+            >
+          </mat-form-field>
+          <mat-form-field appearance="standard" class="col">
+            <mat-label>*Company Size</mat-label>
+            <mat-select formControlName="size" matInput [disabled]="showEdit">
+              <mat-option *ngFor="let option of sizeOptions" [value]="option">
+                {{ option }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="size.hasError('required')"
+              >Size is required</mat-error
+            >
+          </mat-form-field>
+        </div>
+        <div class="row">
+          <mat-form-field appearance="standard" class="col">
+            <mat-label>*Year Founded</mat-label>
+            <mat-select
+              formControlName="yearFounded"
+              matInput
+              [disabled]="showEdit"
+              type="number"
+            >
+              <mat-option *ngFor="let option of yearRange" [value]="option">
+                {{ option }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="yearFounded.hasError('required')">
+              Year Founded is required
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="standard" class="col">
+            <mat-label>*City</mat-label>
+            <input formControlName="city" matInput [readonly]="showEdit" />
+            <mat-error *ngIf="city.hasError('required')"
+              >City is required</mat-error
+            >
+            <mat-error *ngIf="city.hasError('maxlength')"
+              >Maximum of 50 characters</mat-error
+            >
+          </mat-form-field>
+          <mat-form-field appearance="standard" class="col">
+            <mat-label>*State</mat-label>
+            <mat-select formControlName="state" matInput [disabled]="showEdit">
+              <mat-option>--</mat-option>
+              <mat-option
+                *ngFor="let option of stateOptions"
+                [value]="option"
+                >{{ option }}</mat-option
+              >
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <mat-form-field appearance="standard" class="col">
+          <mat-label>Company Description</mat-label>
+          <textarea
+            class="full-width-field"
+            formControlName="description"
+            matInput
+            [readonly]="showEdit"
+            matTextareaAutosize
+          ></textarea>
+          <mat-error *ngIf="description.hasError('required')"
+            >Description is required</mat-error
+          >
+          <mat-error *ngIf="description.hasError('maxlength')"
+            >Maximum of 1000 characters</mat-error
+          >
+        </mat-form-field>
+      </mat-card-content>
+    </mat-card>
+  </form>
+</div>

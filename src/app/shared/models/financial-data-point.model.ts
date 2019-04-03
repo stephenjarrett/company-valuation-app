@@ -1,4 +1,5 @@
 export interface FinancialDataPoint {
-  Year: number;
-  Value: number;
+  id: number;
+  year: number;
+  value: number;
 }

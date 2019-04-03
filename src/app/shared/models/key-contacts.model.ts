@@ -1,5 +1,6 @@
 export interface KeyContacts {
-  Name: string;
-  PhoneNumber: number;
-  Email: string;
+  id: number;
+  name: string;
+  phoneNumber: number;
+  email: string;
 }

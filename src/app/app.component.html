@@ -1,10 +1,20 @@
 <mat-toolbar color="primary" class="navbar">
-  <div>Company Valuation</div>
+  <div>
+    <a [routerLink]="['/']" class="app-header">
+      Company Valuation
+    </a>
+  </div>
 
   <div>
-    <span class="navbar-item">Companies</span>
+    <span class="navbar-item">
+      <a [routerLink]="['/']" class="app-header">
+        Companies
+      </a>
+    </span>
     <span class="navbar-item">Analytics</span>
-    <span class="navbar-item"><i class="fab fa-github fa-lg"></i></span>
+    <span class="navbar-item">
+      <i class="fab fa-github fa-lg"></i>
+    </span>
   </div>
 </mat-toolbar>
 
