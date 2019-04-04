@@ -38,6 +38,16 @@ export class CompanyDetailsComponent implements OnInit {
     private route: ActivatedRoute
   ) {}
 
+  // TODO: Add accordion on main/contacts/financials
+  // plug in company data to form
+  // add save functionality for update form
+  // enable/disable fields and save button based on changes and showEdit
+  // check validation
+  // work on create form - use stepper?
+  // company analytics.. compare trend in bar or line graph and calculate % growth or decline for each stat
+  // compare.. select 2 or more companies and a financial stat to compare on bar graph
+  // use pie charts to display status/industry/size
+
   ngOnInit() {
     this.initForm();
     this.getCompanyDetails();
