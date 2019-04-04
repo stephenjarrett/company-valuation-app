@@ -1,0 +1,85 @@
+<div class="">
+  <div class="search-div">
+    <ng-content></ng-content>
+    <mat-form-field class="search-form-field">
+      <input
+        matInput
+        [(ngModel)]="searchKey"
+        placeholder="Search"
+        (keyup)="applyFilter()"
+      />
+      <button
+        mat-button
+        matSuffix
+        mat-icon-button
+        aria-label="Clear"
+        *ngIf="searchKey"
+        (click)="onSearchClear()"
+      >
+        <i class="fas fa-times"></i>
+      </button>
+    </mat-form-field>
+  </div>
+</div>
+
+<div class="mat-elevation-z8 mb-3">
+  <table
+    mat-table
+    [dataSource]="dataSource"
+    class="full-width-table mat-elevation-z8"
+    matSort
+    matSortActive="companyName"
+    matSortDirection="asc"
+    class="p-2"
+  >
+    <ng-container matColumnDef="companyName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Company Name</th>
+      <td mat-cell *matCellDef="let company">
+        <a [routerLink]="['./company', company.id]" class="company-link">
+          {{ company.companyName }}
+        </a>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+      <td mat-cell *matCellDef="let company">{{ company.status }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="industry">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Industry</th>
+      <td mat-cell *matCellDef="let company">
+        {{ company.industry }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="size">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Size</th>
+      <td mat-cell *matCellDef="let company">
+        {{ company.size }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="city">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>City</th>
+      <td mat-cell *matCellDef="let company">
+        {{ company.city }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="state">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>State</th>
+      <td mat-cell *matCellDef="let company">
+        {{ company.state }}
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+  <mat-paginator
+    [pageSizeOptions]="pageSizeOptions"
+    showFirstLastButtons
+  ></mat-paginator>
+</div>

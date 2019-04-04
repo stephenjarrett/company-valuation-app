@@ -19,7 +19,7 @@ export const companyRoutes: Routes = [
       //     canActivate: [RouteAccessGuard],
       // },
       {
-        path: 'details/:id',
+        path: ':id',
         component: CompanyDetailsComponent,
         data: {}
       }

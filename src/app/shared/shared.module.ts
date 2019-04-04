@@ -34,19 +34,23 @@ const material = [
   MatToolbarModule,
   MatButtonModule,
   MatSidenavModule,
-  MatIconModule,
   MatListModule,
   MatCardModule,
   MatFormFieldModule,
-  ReactiveFormsModule,
   MatInputModule,
   MatAutocompleteModule,
-  MatSelectModule
+  MatSelectModule,
+  MatTabsModule,
+  MatTableModule,
+  MatPaginatorModule,
+  MatIconModule,
+  MatSortModule,
+  MatButtonModule
 ];
 
 @NgModule({
-  imports: [material],
-  exports: [material, SortPipe],
+  imports: [material, ReactiveFormsModule, FormsModule],
+  exports: [material, SortPipe, FormsModule, ReactiveFormsModule],
   declarations: [SortPipe],
   providers: [],
   entryComponents: [],

@@ -1,8 +1,16 @@
 .container {
   display: flex;
-  border: 1px solid red;
+  // border: 1px solid red;
   justify-content: center;
   flex-wrap: wrap;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-row {
+  flex-direction: row;
 }
 
 .company-card {

@@ -4,9 +4,10 @@ import { CommonModule } from '@angular/common';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { TargetCompanyService } from 'src/app/shared/services/target-company.service';
 import { DashboardComponent } from './pages/dashboard.component';
+import { DataTableComponent } from './components/data-table/data-table.component';
 
 @NgModule({
-  declarations: [DashboardComponent],
+  declarations: [DashboardComponent, DataTableComponent],
   imports: [CommonModule, SharedModule, RouterModule],
   providers: [TargetCompanyService]
 })
