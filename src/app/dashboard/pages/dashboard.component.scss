@@ -7,14 +7,10 @@
 
 .flex {
   display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .flex-row {
   flex-direction: row;
-}
-
-.company-card {
-  width: 325px;
-  background-color: rgb(248, 248, 248);
-  margin: 0 15px 25px 0;
 }

@@ -16,7 +16,7 @@ export class DataTableComponent implements OnInit, OnChanges {
   dataSource = new MatTableDataSource<FlattenedCompany>();
   // defaultSort: string;
   // pageSize = 10;
-  // pageSizeOptions: number[] = [10, 25, 50, 100, 250];
+  pageSizeOptions: number[] = [10, 25, 50, 100, 250];
   displayedColumns: string[] = [
     'companyName',
     'status',

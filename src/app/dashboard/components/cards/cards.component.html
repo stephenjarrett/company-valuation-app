@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="search-div">
+    <mat-form-field class="search-form-field">
+      <input
+        matInput
+        [(ngModel)]="searchKey"
+        placeholder="Search Company Name"
+        (keyup)="applyFilter()"
+      />
+      <button
+        mat-button
+        matSuffix
+        mat-icon-button
+        aria-label="Clear"
+        *ngIf="searchKey"
+        (click)="onSearchClear()"
+      >
+        <i class="fas fa-times"></i>
+      </button>
+    </mat-form-field>
+  </div>
+  <div class="container">
+    <mat-card *ngFor="let company of filteredCompanies" class="company-card">
+      <mat-card-header class="flex-column">
+        <div class="h2 p-2">
+          <a [routerLink]="['./company', company.id]">
+            {{ company.companyDetails.companyName }}
+          </a>
+        </div>
+      </mat-card-header>
+      <mat-divider></mat-divider>
+      <div class="h4 mt-1 p2">Status: {{ company.status }}</div>
+      <mat-divider></mat-divider>
+      <mat-card-subtitle> </mat-card-subtitle>
+      <mat-card-content>
+        <ul class="p-2">
+          <li>
+            {{ company.companyDetails.companyIndustry }}
+          </li>
+          <li>
+            {{ company.companyDetails.companySize }}
+          </li>
+          <li>
+            {{ company.companyDetails.city }},
+            {{ company.companyDetails.state }}
+          </li>
+        </ul>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

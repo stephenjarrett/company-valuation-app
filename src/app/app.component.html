@@ -1,35 +1,36 @@
-<mat-toolbar color="primary" class="navbar">
-  <div>
-    <a [routerLink]="['/']" class="app-header">
-      Company Valuation
-    </a>
-  </div>
+<div class="bg">
+  <mat-toolbar color="primary" class="navbar">
+    <div>
+      <a [routerLink]="['/']" class="app-header">
+        Company Valuation
+      </a>
+    </div>
 
-  <div>
-    <span class="navbar-item">
-      <a [routerLink]="['/']" class="app-header">
-        Companies
-      </a>
-    </span>
-    <span class="navbar-item">
-      <a [routerLink]="['/']" class="app-header">
-        Analytics
-      </a>
-    </span>
-    <span class="navbar-item">
-      <a [routerLink]="['/']" class="app-header">
-        Compare
-      </a>
-    </span>
-    <span class="navbar-item">
-      <a
-        class="app-header"
-        href="https://github.com/stephenjarrett/company-valuation-app"
-      >
-        <i class="fab fa-github fa-lg"></i>
-      </a>
-    </span>
-  </div>
-</mat-toolbar>
-
-<router-outlet></router-outlet>
+    <div>
+      <span class="navbar-item">
+        <a [routerLink]="['/']" class="app-header">
+          Companies
+        </a>
+      </span>
+      <span class="navbar-item">
+        <a [routerLink]="['/']" class="app-header">
+          Analytics
+        </a>
+      </span>
+      <span class="navbar-item">
+        <a [routerLink]="['/']" class="app-header">
+          Compare
+        </a>
+      </span>
+      <span class="navbar-item">
+        <a
+          class="app-header"
+          href="https://github.com/stephenjarrett/company-valuation-app"
+        >
+          <i class="fab fa-github fa-lg"></i>
+        </a>
+      </span>
+    </div>
+  </mat-toolbar>
+  <router-outlet></router-outlet>
+</div>
