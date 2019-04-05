@@ -2,33 +2,27 @@ import { SortPipe } from './pipes/sort.pipe';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import {
-  MatNativeDateModule,
-  MatSnackBarModule,
   MatIconModule,
-  MatBadgeModule,
-  MatDialogModule,
   MatButtonModule,
   MatTableModule,
   MatPaginatorModule,
   MatSortModule,
   MatTabsModule,
-  MatCheckboxModule,
   MatToolbarModule,
   MatCardModule,
   MatFormFieldModule,
-  MatProgressSpinnerModule,
   MatInputModule,
   MatAutocompleteModule,
-  MatGridListModule,
-  MatMenuModule,
   MatTooltipModule,
   MatSidenav,
   MatSidenavContainer,
   MatSidenavModule,
   MatListModule,
-  MatSelectModule
+  MatSelectModule,
+  MatSnackBarModule
 } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SnackbarComponent } from './components/snackbar/snackbar.component';
 
 const material = [
   MatToolbarModule,
@@ -45,13 +39,19 @@ const material = [
   MatPaginatorModule,
   MatIconModule,
   MatSortModule,
-  MatButtonModule
+  MatSnackBarModule
 ];
 
 @NgModule({
   imports: [material, ReactiveFormsModule, FormsModule],
-  exports: [material, SortPipe, FormsModule, ReactiveFormsModule],
-  declarations: [SortPipe],
+  exports: [
+    material,
+    SortPipe,
+    FormsModule,
+    ReactiveFormsModule,
+    SnackbarComponent
+  ],
+  declarations: [SortPipe, SnackbarComponent],
   providers: [],
   entryComponents: [],
   schemas: []

@@ -1,5 +1,39 @@
 <div class="container mt-5">
-  <button mat-raised-button color="primary">Company Analytics</button>
+  <div>
+    <button mat-raised-button color="primary">Company Analytics</button>
+  </div>
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="onClickEdit()"
+    *ngIf="showEdit"
+  >
+    Edit
+  </button>
+  <button
+    mat-raised-button
+    color="primary"
+    *ngIf="showDelete"
+    (click)="onClickDelete()"
+  >
+    Delete
+  </button>
+  <button
+    mat-raised-button
+    color="primary"
+    *ngIf="showSave"
+    [disabled]="!companyDetailForm.valid || companyDetailForm.pristine"
+  >
+    Save
+  </button>
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="onClickCancel()"
+    *ngIf="showCancel"
+  >
+    Cancel
+  </button>
   <form [formGroup]="companyDetailForm">
     <mat-card>
       <mat-card-content class="flex">
@@ -10,7 +44,6 @@
               #inputCompanyNameRef
               formControlName="companyName"
               matInput
-              [readonly]="showEdit"
             />
             <mat-error *ngIf="companyName.hasError('required')"
               >Company name is required</mat-error
@@ -24,7 +57,7 @@
           </mat-form-field>
           <mat-form-field appearance="standard" class="col">
             <mat-label>*Valuation Status</mat-label>
-            <mat-select formControlName="status" matInput [disabled]="showEdit">
+            <mat-select formControlName="status" matInput>
               <mat-option>--</mat-option>
               <mat-option
                 *ngFor="let option of statusOptions"
@@ -43,7 +76,6 @@
             <input
               formControlName="industry"
               matInput
-              [readonly]="showEdit"
               [matAutocomplete]="autoIndustry"
             />
             <mat-autocomplete #autoIndustry="matAutocomplete">
@@ -60,9 +92,9 @@
           </mat-form-field>
           <mat-form-field appearance="standard" class="col">
             <mat-label>*Company Size</mat-label>
-            <mat-select formControlName="size" matInput [disabled]="showEdit">
-              <mat-option *ngFor="let option of sizeOptions" [value]="option">
-                {{ option }}
+            <mat-select formControlName="size" matInput>
+              <mat-option *ngFor="let size of sizeOptions" [value]="size">
+                {{ size }}
               </mat-option>
             </mat-select>
             <mat-error *ngIf="size.hasError('required')"
@@ -73,12 +105,7 @@
         <div class="row">
           <mat-form-field appearance="standard" class="col">
             <mat-label>*Year Founded</mat-label>
-            <mat-select
-              formControlName="yearFounded"
-              matInput
-              [disabled]="showEdit"
-              type="number"
-            >
+            <mat-select formControlName="yearFounded" matInput type="number">
               <mat-option *ngFor="let option of yearRange" [value]="option">
                 {{ option }}
               </mat-option>
@@ -89,7 +116,7 @@
           </mat-form-field>
           <mat-form-field appearance="standard" class="col">
             <mat-label>*City</mat-label>
-            <input formControlName="city" matInput [readonly]="showEdit" />
+            <input formControlName="city" matInput />
             <mat-error *ngIf="city.hasError('required')"
               >City is required</mat-error
             >
@@ -99,7 +126,7 @@
           </mat-form-field>
           <mat-form-field appearance="standard" class="col">
             <mat-label>*State</mat-label>
-            <mat-select formControlName="state" matInput [disabled]="showEdit">
+            <mat-select formControlName="state" matInput>
               <mat-option>--</mat-option>
               <mat-option
                 *ngFor="let option of stateOptions"
@@ -115,7 +142,6 @@
             class="full-width-field"
             formControlName="description"
             matInput
-            [readonly]="showEdit"
             matTextareaAutosize
           ></textarea>
           <mat-error *ngIf="description.hasError('required')"

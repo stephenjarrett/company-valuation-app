@@ -1,9 +1,8 @@
 import { Observable } from 'rxjs';
-import { IndustryService } from './../../../shared/services/industry.service';
 import { TargetCompany } from './../../../shared/models/target-company.model';
 import { Component, OnInit } from '@angular/core';
 import { TargetCompanyService } from 'src/app/shared/services/target-company.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import {
   FormGroup,
@@ -11,9 +10,19 @@ import {
   Validators,
   AbstractControl
 } from '@angular/forms';
-import { getYearRange } from 'src/app/shared/utils/utils';
+import {
+  getYearRange,
+  toggleFormFieldsState
+} from 'src/app/shared/utils/utils';
 import { map, startWith } from 'rxjs/operators';
-import { statusList, sizeList, statesList } from 'src/app/shared/options';
+import {
+  statusList,
+  sizeList,
+  statesList,
+  industryList
+} from 'src/app/shared/options';
+import { MatSnackBar } from '@angular/material';
+import { SnackbarComponent } from 'src/app/shared/components/snackbar/snackbar.component';
 
 @Component({
   selector: 'app-company-details',
@@ -21,7 +30,10 @@ import { statusList, sizeList, statesList } from 'src/app/shared/options';
   styleUrls: ['./company-details.component.scss']
 })
 export class CompanyDetailsComponent implements OnInit {
-  showEdit = false;
+  showEdit = true;
+  showDelete = true;
+  showSave = false;
+  showCancel = false;
   filteredIndustries: Observable<string[]>;
   filteredYears: Observable<string[] | number[]>;
   company: TargetCompany;
@@ -34,8 +46,9 @@ export class CompanyDetailsComponent implements OnInit {
 
   constructor(
     private targetCompanyService: TargetCompanyService,
-    private industryService: IndustryService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router,
+    private snackBar: MatSnackBar
   ) {}
 
   // TODO: Add accordion on main/contacts/financials
@@ -50,12 +63,48 @@ export class CompanyDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.initForm();
-    this.getCompanyDetails();
+    this.getData();
+  }
+
+  getData() {
     this.getIndustries();
     this.getYears();
     this.getStatusOptions();
     this.getSizeOptions();
     this.getStateOptions();
+    this.getCompanyDetails();
+  }
+
+  initForm() {
+    this.companyDetailForm = new FormGroup({
+      companyName: new FormControl({ value: null, disabled: true }, [
+        Validators.required,
+        Validators.maxLength(100)
+        // duplicateCompanyNameValidator([])
+      ]),
+      status: new FormControl({ value: null, disabled: true }, [
+        Validators.required
+      ]),
+      industry: new FormControl({ value: null, disabled: true }, [
+        Validators.required
+      ]),
+      size: new FormControl({ value: null, disabled: true }, [
+        Validators.required
+      ]),
+      yearFounded: new FormControl({ value: null, disabled: true }, [
+        Validators.required
+      ]),
+      city: new FormControl({ value: null, disabled: true }, [
+        Validators.required,
+        Validators.maxLength(50)
+      ]),
+      state: new FormControl({ value: null, disabled: true }, [
+        Validators.required
+      ]),
+      description: new FormControl({ value: null, disabled: true }, [
+        Validators.maxLength(1000)
+      ])
+    });
   }
 
   getCompanyDetails(): void {
@@ -63,18 +112,35 @@ export class CompanyDetailsComponent implements OnInit {
       this.route.snapshot.paramMap.get('id'),
       0
     );
-    this.targetCompanyService
-      .findById(companyId)
-      .subscribe((data: TargetCompany) => {
+    this.targetCompanyService.findById(companyId).subscribe(
+      (data: TargetCompany) => {
         this.company = data;
         console.log(this.company);
-      });
+        this.setFormValues();
+      },
+      (error: HttpErrorResponse) => {
+        console.log(error);
+      }
+    );
+  }
+
+  setFormValues() {
+    this.companyDetailForm.setValue({
+      companyName: this.company.companyDetails.companyName,
+      status: this.company.status,
+      industry: this.company.companyDetails.companyIndustry,
+      size: this.company.companyDetails.companySize,
+      yearFounded: this.company.companyDetails.yearFounded,
+      city: this.company.companyDetails.city,
+      state: this.company.companyDetails.state,
+      description: this.company.companyDetails.description
+        ? this.company.companyDetails.description
+        : null
+    });
   }
 
   getIndustries(): void {
-    this.industryService.findAll().subscribe((data: string[]) => {
-      this.industries = data.sort();
-    });
+    this.industries = industryList.sort();
 
     this.filteredIndustries = this.industry.valueChanges.pipe(
       startWith(''),
@@ -98,29 +164,58 @@ export class CompanyDetailsComponent implements OnInit {
     this.statusOptions = statusList;
   }
 
-  initForm() {
-    this.companyDetailForm = new FormGroup({
-      companyName: new FormControl(null, [
-        Validators.required,
-        Validators.maxLength(100)
-        // duplicateCompanyNameValidator([])
-      ]),
-      status: new FormControl(null, [Validators.required]),
-      industry: new FormControl(null, [Validators.required]),
-      size: new FormControl(null, [Validators.required]),
-      yearFounded: new FormControl(null, [Validators.required]),
-      city: new FormControl(null, [
-        Validators.required,
-        Validators.maxLength(50)
-      ]),
-      state: new FormControl(null, [Validators.required]),
-      description: new FormControl(null, [Validators.maxLength(1000)])
-    });
-  }
-
   private _filterString(value: string, options: string[]): string[] {
     const filterValue = value.toLowerCase();
     return options.filter(option => option.toLowerCase().includes(filterValue));
+  }
+
+  onClickEdit() {
+    this.showEdit = false;
+    this.showDelete = false;
+    this.showSave = true;
+    this.showCancel = true;
+
+    toggleFormFieldsState(true, this.companyDetailForm);
+  }
+
+  onClickCancel() {
+    this.showEdit = true;
+    this.showDelete = true;
+    this.showSave = false;
+    this.showCancel = false;
+
+    this.companyDetailForm.reset({
+      companyName: this.company.companyDetails.companyName,
+      status: this.company.status,
+      industry: this.company.companyDetails.companyIndustry,
+      size: this.company.companyDetails.companySize,
+      yearFounded: this.company.companyDetails.yearFounded,
+      city: this.company.companyDetails.city,
+      state: this.company.companyDetails.state,
+      description: this.company.companyDetails.description
+        ? this.company.companyDetails.description
+        : null
+    });
+
+    toggleFormFieldsState(false, this.companyDetailForm);
+  }
+
+  onClickDelete() {
+    this.targetCompanyService.deleteById(this.company.id).subscribe(
+      () => {
+        this.snackBar.openFromComponent(SnackbarComponent, {
+          data: {
+            baseMessage: 'Successfully deleted company:',
+            highlight: this.company.companyDetails.companyName
+          },
+          duration: 4000
+        });
+        this.router.navigateByUrl('/').then();
+      },
+      (error: HttpErrorResponse) => {
+        console.log(error);
+      }
+    );
   }
 
   get _showEdit(): boolean {
