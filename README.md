@@ -1,5 +1,14 @@
 # CompanyValuationApp
 
+# Installion
+To run this project simply clone the repository and then run an npm install to get all the dependencies. This web app relies on json-server to mock a back end with json data.
+
+After installing the node modules you will need to execute 2 scripts to run the app
+# npm run json:server (mock back-end)
+# npm-start (angular ng-serve)
+
+Navigate to localhost:4200 and its good to good.
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.7.
 
 ## Development server
