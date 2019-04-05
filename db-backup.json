@@ -105,6 +105,69 @@
           "email": "john.doe@google.com"
         }
       ]
+    },
+    {
+      "id": 6,
+      "status": "Declined",
+      "companyDetails": {
+        "companyName": "Roogle",
+        "companyIndustry": "Information Technology",
+        "companySize": "10,001+ employees",
+        "yearFounded": 1991,
+        "city": "San Jose",
+        "state": "California"
+      },
+      "companyFinancials": {},
+      "keyContacts": [
+        {
+          "id": 1,
+          "name": "John Doe",
+          "phone": 5554239493,
+          "email": "john.doe@google.com"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "status": "Declined",
+      "companyDetails": {
+        "companyName": "Roogle",
+        "companyIndustry": "Information Technology",
+        "companySize": "10,001+ employees",
+        "yearFounded": 1991,
+        "city": "San Jose",
+        "state": "California"
+      },
+      "companyFinancials": {},
+      "keyContacts": [
+        {
+          "id": 1,
+          "name": "John Doe",
+          "phone": 5554239493,
+          "email": "john.doe@google.com"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "status": "Declined",
+      "companyDetails": {
+        "companyName": "Roogle",
+        "companyIndustry": "Information Technology",
+        "companySize": "10,001+ employees",
+        "yearFounded": 1991,
+        "city": "San Jose",
+        "state": "California"
+      },
+      "companyFinancials": {},
+      "keyContacts": [
+        {
+          "id": 1,
+          "name": "John Doe",
+          "phone": 5554239493,
+          "email": "john.doe@google.com"
+        }
+      ]
     }
   ]
 }

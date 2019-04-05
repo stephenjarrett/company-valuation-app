@@ -2,41 +2,53 @@
   <div>
     <button mat-raised-button color="primary">Company Analytics</button>
   </div>
-  <button
-    mat-raised-button
-    color="primary"
-    (click)="onClickEdit()"
-    *ngIf="showEdit"
-  >
-    Edit
-  </button>
-  <button
-    mat-raised-button
-    color="primary"
-    *ngIf="showDelete"
-    (click)="onClickDelete()"
-  >
-    Delete
-  </button>
-  <button
-    mat-raised-button
-    color="primary"
-    *ngIf="showSave"
-    [disabled]="!companyDetailForm.valid || companyDetailForm.pristine"
-  >
-    Save
-  </button>
-  <button
-    mat-raised-button
-    color="primary"
-    (click)="onClickCancel()"
-    *ngIf="showCancel"
-  >
-    Cancel
-  </button>
+  <div class="m-2">
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="onClickEdit()"
+      *ngIf="showEdit"
+    >
+      Edit
+    </button>
+    <button
+      mat-raised-button
+      color="primary"
+      *ngIf="showDelete"
+      (click)="onClickDelete()"
+    >
+      Delete
+    </button>
+    <button
+      mat-raised-button
+      color="primary"
+      *ngIf="showSave"
+      [disabled]="!companyDetailForm.valid || companyDetailForm.pristine"
+    >
+      Save
+    </button>
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="onClickCancel()"
+      *ngIf="showCancel"
+    >
+      Cancel
+    </button>
+  </div>
   <form [formGroup]="companyDetailForm">
-    <mat-card>
-      <mat-card-content class="flex">
+    <mat-accordion class="mt-4">
+      <mat-expansion-panel expanded>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <strong>
+              Basic Company Information
+            </strong>
+          </mat-panel-title>
+          <mat-panel-description> </mat-panel-description>
+        </mat-expansion-panel-header>
+        <!-- <mat-card> -->
+        <!-- <mat-card-content class="flex"> -->
         <div class="row">
           <mat-form-field appearance="standard" class="col">
             <mat-label>*Company Name</mat-label>
@@ -151,7 +163,89 @@
             >Maximum of 1000 characters</mat-error
           >
         </mat-form-field>
-      </mat-card-content>
-    </mat-card>
+        <!-- </mat-card-content> -->
+        <!-- </mat-card> -->
+      </mat-expansion-panel>
+
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <strong>
+              Primary Contact
+            </strong>
+          </mat-panel-title>
+          <mat-panel-description> </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div class="row">
+          <mat-form-field appearance="standard" class="col">
+            <mat-label>*Contact Name</mat-label>
+            <input formControlName="contactName" matInput />
+            <mat-error *ngIf="contactName.hasError('required')"
+              >Contact name is required</mat-error
+            >
+            <mat-error *ngIf="contactName.hasError('maxlength')"
+              >Maximum of 100 characters</mat-error
+            >
+          </mat-form-field>
+          <mat-form-field appearance="standard" class="col">
+            <mat-label>*Contact Email</mat-label>
+            <input formControlName="contactEmail" matInput />
+            <mat-error *ngIf="contactEmail.hasError('required')"
+              >Contact email is required</mat-error
+            >
+            <mat-error *ngIf="contactEmail.hasError('maxlength')"
+              >Maximum of 100 characters</mat-error
+            >
+          </mat-form-field>
+          <mat-form-field appearance="standard" class="col">
+            <mat-label>*Contact Phone</mat-label>
+            <input formControlName="contactPhone" matInput />
+            <mat-error *ngIf="contactPhone.hasError('required')"
+              >Contact phone is required</mat-error
+            >
+            <mat-error *ngIf="contactPhone.hasError('maxlength')"
+              >Maximum of 100 characters</mat-error
+            >
+            <!-- <mat-error *ngIf="companyName.hasError('companyNameInUse')">{{
+                  companyName.getError('companyNameInUse').value
+                }}</mat-error> -->
+          </mat-form-field>
+        </div>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <strong>
+              Company Financials (in thousands)
+            </strong>
+          </mat-panel-title>
+          <mat-panel-description> </mat-panel-description>
+        </mat-expansion-panel-header>
+        <!-- <div class="row">
+          <mat-form-field appearance="standard" class="col">
+            <mat-label>*Assets - 2016</mat-label>
+            <input formControlName="assets[0]" matInput />
+            <mat-error *ngIf="contactName.hasError('required')"
+              >Required</mat-error
+            >
+          </mat-form-field>
+          <mat-form-field appearance="standard" class="col">
+            <mat-label>*Assets - 2017</mat-label>
+            <input formControlName="assets[1]" matInput />
+            <mat-error *ngIf="contactEmail.hasError('required')"
+              >Required</mat-error
+            >
+          </mat-form-field>
+          <mat-form-field appearance="standard" class="col">
+            <mat-label>*Assets - 2018</mat-label>
+            <input formControlName="assets[2]" matInput />
+            <mat-error *ngIf="contactPhone.hasError('required')"
+              >Required</mat-error
+            >
+          </mat-form-field>
+        </div> -->
+      </mat-expansion-panel>
+    </mat-accordion>
   </form>
 </div>

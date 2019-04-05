@@ -19,9 +19,11 @@ import {
   MatSidenavModule,
   MatListModule,
   MatSelectModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  MatAccordion,
+  MatExpansionModule
 } from '@angular/material';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, FormArray } from '@angular/forms';
 import { SnackbarComponent } from './components/snackbar/snackbar.component';
 
 const material = [
@@ -39,7 +41,8 @@ const material = [
   MatPaginatorModule,
   MatIconModule,
   MatSortModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  MatExpansionModule
 ];
 
 @NgModule({

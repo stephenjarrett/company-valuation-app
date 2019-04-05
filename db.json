@@ -12,15 +12,27 @@
         "state": "Georgia",
         "description": "n/a"
       },
-      "companyFinancials": {},
-      "keyContacts": [
-        {
-          "id": 1,
-          "name": "John Doe",
-          "phone": 5554239493,
-          "email": "john.doe@lougle.com"
-        }
-      ]
+      "companyFinancials": {
+        "assets": [
+          {
+            "year": 2016,
+            "value": 42
+          },
+          {
+            "year": 2017,
+            "value": 54
+          },
+          {
+            "year": 2018,
+            "value": 44
+          }
+        ]
+      },
+      "keyContact": {
+        "name": "John Doe",
+        "phone": 5554239493,
+        "email": "john.doe@lougle.com"
+      }
     },
     {
       "id": 2,
@@ -34,14 +46,11 @@
         "state": "California"
       },
       "companyFinancials": {},
-      "keyContacts": [
-        {
-          "id": 1,
-          "name": "John Doe",
-          "phone": 5554239493,
-          "email": "john.doe@google.com"
-        }
-      ]
+      "keyContact": {
+        "name": "John Doe",
+        "phone": 5554239493,
+        "email": "john.doe@google.com"
+      }
     },
     {
       "id": 3,
@@ -55,14 +64,11 @@
         "state": "California"
       },
       "companyFinancials": {},
-      "keyContacts": [
-        {
-          "id": 1,
-          "name": "John Doe",
-          "phone": 5554239493,
-          "email": "john.doe@google.com"
-        }
-      ]
+      "keyContact": {
+        "name": "John Doe",
+        "phone": 5554239493,
+        "email": "john.doe@google.com"
+      }
     },
     {
       "id": 4,
@@ -76,14 +82,11 @@
         "state": "California"
       },
       "companyFinancials": {},
-      "keyContacts": [
-        {
-          "id": 1,
-          "name": "John Doe",
-          "phone": 5554239493,
-          "email": "john.doe@google.com"
-        }
-      ]
+      "keyContact": {
+        "name": "John Doe",
+        "phone": 5554239493,
+        "email": "john.doe@google.com"
+      }
     },
     {
       "id": 5,
@@ -97,14 +100,65 @@
         "state": "California"
       },
       "companyFinancials": {},
-      "keyContacts": [
-        {
-          "id": 1,
-          "name": "John Doe",
-          "phone": 5554239493,
-          "email": "john.doe@google.com"
-        }
-      ]
+      "keyContact": {
+        "name": "John Doe",
+        "phone": 5554239493,
+        "email": "john.doe@google.com"
+      }
+    },
+    {
+      "id": 6,
+      "status": "Declined",
+      "companyDetails": {
+        "companyName": "Roogle",
+        "companyIndustry": "Information Technology",
+        "companySize": "10,001+ employees",
+        "yearFounded": 1991,
+        "city": "San Jose",
+        "state": "California"
+      },
+      "companyFinancials": {},
+      "keyContact": {
+        "name": "John Doe",
+        "phone": 5554239493,
+        "email": "john.doe@google.com"
+      }
+    },
+    {
+      "id": 7,
+      "status": "Declined",
+      "companyDetails": {
+        "companyName": "Roogle",
+        "companyIndustry": "Information Technology",
+        "companySize": "10,001+ employees",
+        "yearFounded": 1991,
+        "city": "San Jose",
+        "state": "California"
+      },
+      "companyFinancials": {},
+      "keyContact": {
+        "name": "John Doe",
+        "phone": 5554239493,
+        "email": "john.doe@google.com"
+      }
+    },
+    {
+      "id": 8,
+      "status": "Declined",
+      "companyDetails": {
+        "companyName": "Roogle",
+        "companyIndustry": "Information Technology",
+        "companySize": "10,001+ employees",
+        "yearFounded": 1991,
+        "city": "San Jose",
+        "state": "California"
+      },
+      "companyFinancials": {},
+      "keyContact": {
+        "name": "John Doe",
+        "phone": 5554239493,
+        "email": "john.doe@google.com"
+      }
     }
   ]
 }

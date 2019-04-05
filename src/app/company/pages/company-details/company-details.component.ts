@@ -8,7 +8,9 @@ import {
   FormGroup,
   FormControl,
   Validators,
-  AbstractControl
+  AbstractControl,
+  FormArray,
+  FormBuilder
 } from '@angular/forms';
 import {
   getYearRange,
@@ -23,6 +25,7 @@ import {
 } from 'src/app/shared/options';
 import { MatSnackBar } from '@angular/material';
 import { SnackbarComponent } from 'src/app/shared/components/snackbar/snackbar.component';
+import { FinancialDataPoint } from 'src/app/shared/models/financial-data-point.model';
 
 @Component({
   selector: 'app-company-details',
@@ -48,7 +51,8 @@ export class CompanyDetailsComponent implements OnInit {
     private targetCompanyService: TargetCompanyService,
     private route: ActivatedRoute,
     private router: Router,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private fb: FormBuilder
   ) {}
 
   // TODO: Add accordion on main/contacts/financials
@@ -76,7 +80,7 @@ export class CompanyDetailsComponent implements OnInit {
   }
 
   initForm() {
-    this.companyDetailForm = new FormGroup({
+    this.companyDetailForm = this.fb.group({
       companyName: new FormControl({ value: null, disabled: true }, [
         Validators.required,
         Validators.maxLength(100)
@@ -103,7 +107,45 @@ export class CompanyDetailsComponent implements OnInit {
       ]),
       description: new FormControl({ value: null, disabled: true }, [
         Validators.maxLength(1000)
-      ])
+      ]),
+      contactName: new FormControl({ value: null, disabled: true }, [
+        Validators.required,
+        Validators.maxLength(100)
+      ]),
+      contactEmail: new FormControl({ value: null, disabled: true }, [
+        Validators.required,
+        Validators.maxLength(100)
+      ]),
+      contactPhone: new FormControl({ value: null, disabled: true }, [
+        Validators.required,
+        Validators.maxLength(100)
+      ]),
+      assets: this.fb.array([]),
+      liabilities: this.fb.array([]),
+      profitMargin: this.fb.array([]),
+      salesRevenue: this.fb.array([]),
+      grossMargin: this.fb.array([]),
+      operatingCosts: this.fb.array([])
+      // assets: new FormArray([
+      //   new FormGroup({
+      //     year: new FormControl({ value: 2016, disabled: true }),
+      //     value: new FormControl({ value: null, disabled: true }, [
+      //       Validators.required
+      //     ])
+      //   }),
+      //   new FormGroup({
+      //     year: new FormControl({ value: 2017, disabled: true }),
+      //     value: new FormControl({ value: null, disabled: true }, [
+      //       Validators.required
+      //     ])
+      //   }),
+      //   new FormGroup({
+      //     year: new FormControl({ value: 2018, disabled: true }),
+      //     value: new FormControl({ value: null, disabled: true }, [
+      //       Validators.required
+      //     ])
+      //   })
+      // ])
     });
   }
 
@@ -125,7 +167,7 @@ export class CompanyDetailsComponent implements OnInit {
   }
 
   setFormValues() {
-    this.companyDetailForm.setValue({
+    this.companyDetailForm.patchValue({
       companyName: this.company.companyDetails.companyName,
       status: this.company.status,
       industry: this.company.companyDetails.companyIndustry,
@@ -135,7 +177,11 @@ export class CompanyDetailsComponent implements OnInit {
       state: this.company.companyDetails.state,
       description: this.company.companyDetails.description
         ? this.company.companyDetails.description
-        : null
+        : null,
+      contactName: this.company.keyContact.name,
+      contactEmail: this.company.keyContact.email,
+      contactPhone: this.company.keyContact.phone
+      // assets: this.company.companyFinancials.assets
     });
   }
 
@@ -194,7 +240,10 @@ export class CompanyDetailsComponent implements OnInit {
       state: this.company.companyDetails.state,
       description: this.company.companyDetails.description
         ? this.company.companyDetails.description
-        : null
+        : null,
+      contactName: this.company.keyContact.name,
+      contactEmail: this.company.keyContact.email,
+      contactPhone: this.company.keyContact.phone
     });
 
     toggleFormFieldsState(false, this.companyDetailForm);
@@ -245,5 +294,14 @@ export class CompanyDetailsComponent implements OnInit {
   }
   get description(): AbstractControl {
     return this.companyDetailForm.get('description');
+  }
+  get contactName(): AbstractControl {
+    return this.companyDetailForm.get('contactName');
+  }
+  get contactEmail(): AbstractControl {
+    return this.companyDetailForm.get('contactEmail');
+  }
+  get contactPhone(): AbstractControl {
+    return this.companyDetailForm.get('contactPhone');
   }
 }
