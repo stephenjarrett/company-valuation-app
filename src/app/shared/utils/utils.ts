@@ -16,3 +16,8 @@ export function toggleFormFieldsState(toggle: boolean, form: FormGroup) {
     form.controls[key][state]();
   });
 }
+
+export function buildRange(start, end) {
+  if (start === end) return [start];
+  return [start, ...buildRange(start + 1, end)];
+}

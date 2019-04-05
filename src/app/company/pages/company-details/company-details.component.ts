@@ -15,7 +15,8 @@ import {
 } from '@angular/forms';
 import {
   getYearRange,
-  toggleFormFieldsState
+  toggleFormFieldsState,
+  buildRange
 } from 'src/app/shared/utils/utils';
 import { map, startWith } from 'rxjs/operators';
 import {
@@ -207,11 +208,7 @@ export class CompanyDetailsComponent implements OnInit {
     const controls = this.companyDetailForm.controls[dataType] as FormArray;
     let valuesArray: FinancialDataPoint[];
     if (this.isCreating) {
-      valuesArray = [
-        { year: 2016, value: null },
-        { year: 2017, value: null },
-        { year: 2018, value: null }
-      ];
+      valuesArray = this.build3YearDataPointArray();
     } else {
       valuesArray = this.company.companyFinancials[dataType];
     }
@@ -220,21 +217,9 @@ export class CompanyDetailsComponent implements OnInit {
         this.fb.group({ year: dataPoint.year, value: dataPoint.value })
       );
     });
+
     toggleFormFieldsState(this.isCreating, this.companyDetailForm);
   }
-
-  // addFinancialDataForCreate(dataType: string) {
-  //   console.log(dataType);
-  //   console.log(this.assetsControls.controls);
-  //   const controls = this.companyDetailForm.controls[dataType] as FormArray;
-  //   const years = [2016, 2017, 2018];
-  //   years.forEach((year: number) => {
-  //     controls.push(this.fb.group({ year: 'test', value: 1 }));
-  //   });
-  //   // console.log(this.companyDetailForm);
-  //   console.log(this.assetsControls);
-  //   toggleFormFieldsState(true, this.companyDetailForm);
-  // }
 
   getIndustries(): void {
     this.industries = industryList.sort();
@@ -245,9 +230,13 @@ export class CompanyDetailsComponent implements OnInit {
     );
   }
 
-  last3Years(): number[] {
-    let currentYear = Date.now();
-    return;
+  build3YearDataPointArray(): FinancialDataPoint[] {
+    const currentYear = new Date().getFullYear();
+    const range = buildRange(currentYear - 3, currentYear - 1);
+    const dataPointArray = range.map(year => {
+      return { year, value: null };
+    });
+    return dataPointArray;
   }
 
   getYears(): void {
@@ -310,7 +299,15 @@ export class CompanyDetailsComponent implements OnInit {
   }
 
   onClickSave() {
-    const updatedCompany = this.buildTargetCompanyObject();
+    const targetCompany = this.buildTargetCompanyObject();
+    if (targetCompany.id) {
+      this.handleUpdate(targetCompany);
+    } else {
+      this.handleCreate(targetCompany);
+    }
+  }
+
+  handleUpdate(updatedCompany: TargetCompany) {
     this.targetCompanyService.update(this.company.id, updatedCompany).subscribe(
       () => {
         this.snackBar.openFromComponent(SnackbarComponent, {
@@ -326,6 +323,24 @@ export class CompanyDetailsComponent implements OnInit {
         this.showDelete = true;
         this.showEdit = true;
         this.company = this.buildTargetCompanyObject();
+      },
+      (error: HttpErrorResponse) => {
+        console.log(error);
+      }
+    );
+  }
+
+  handleCreate(newCompany: TargetCompany) {
+    this.targetCompanyService.create(newCompany).subscribe(
+      () => {
+        this.snackBar.openFromComponent(SnackbarComponent, {
+          data: {
+            baseMessage: 'Successfully created company: ',
+            highlight: newCompany.companyDetails.companyName
+          },
+          duration: 4000
+        });
+        this.router.navigateByUrl('/').then();
       },
       (error: HttpErrorResponse) => {
         console.log(error);
