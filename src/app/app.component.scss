@@ -12,13 +12,11 @@
 }
 
 .bg {
-  // background-image: url('/src/app/bg.jpg');
-  height: 40em;
   background-size: cover;
-  width: auto;
   // background-image: url('https://images.unsplash.com/photo-1485871981521-5b1fd3805eee?ixlib=rb-1.2.1&auto=format&fit=crop&w=2250&q=80');
-  // background-image: url('https://images.unsplash.com/photo-1483153495259-1d319857a614?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1080&q=80');
+  background-image: url('https://images.unsplash.com/photo-1483153495259-1d319857a614?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1080&q=80');
   background-position: 50% 50%;
-  height: 100vh;
-  background-blend-mode: lighten;
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
 }

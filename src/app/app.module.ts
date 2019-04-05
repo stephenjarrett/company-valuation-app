@@ -7,9 +7,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { CompanyModule } from './company/company.module';
+import { CompareComponent } from './compare/pages/compare/compare.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, CompareComponent],
   imports: [
     BrowserAnimationsModule,
     BrowserModule,

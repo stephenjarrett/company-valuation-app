@@ -13,18 +13,16 @@ import {
   MatFormFieldModule,
   MatInputModule,
   MatAutocompleteModule,
-  MatTooltipModule,
-  MatSidenav,
-  MatSidenavContainer,
   MatSidenavModule,
   MatListModule,
   MatSelectModule,
   MatSnackBarModule,
-  MatAccordion,
-  MatExpansionModule
+  MatExpansionModule,
+  MatRadioModule
 } from '@angular/material';
 import { FormsModule, ReactiveFormsModule, FormArray } from '@angular/forms';
 import { SnackbarComponent } from './components/snackbar/snackbar.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 const material = [
   MatToolbarModule,
@@ -42,17 +40,19 @@ const material = [
   MatIconModule,
   MatSortModule,
   MatSnackBarModule,
-  MatExpansionModule
+  MatExpansionModule,
+  MatRadioModule
 ];
 
 @NgModule({
-  imports: [material, ReactiveFormsModule, FormsModule],
+  imports: [material, ReactiveFormsModule, FormsModule, NgxChartsModule],
   exports: [
     material,
     SortPipe,
     FormsModule,
     ReactiveFormsModule,
-    SnackbarComponent
+    SnackbarComponent,
+    NgxChartsModule
   ],
   declarations: [SortPipe, SnackbarComponent],
   providers: [],

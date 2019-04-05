@@ -73,11 +73,6 @@ export class CompanyDetailsComponent implements OnInit {
     private fb: FormBuilder
   ) {}
 
-  // TODO: Add accordion on main/contacts/financials
-  // company analytics.. compare trend in bar or line graph and calculate % growth or decline for each stat
-  // compare.. select 2 or more companies and a financial stat to compare on bar graph
-  // use pie charts to display status/industry/size
-
   ngOnInit() {
     this.isCreating = this.route.snapshot.data.creating;
     this.initForm();
@@ -114,7 +109,6 @@ export class CompanyDetailsComponent implements OnInit {
       companyName: new FormControl({ value: null, disabled: true }, [
         Validators.required,
         Validators.maxLength(100)
-        // duplicateCompanyNameValidator([])
       ]),
       status: new FormControl({ value: null, disabled: true }, [
         Validators.required

@@ -117,3 +117,18 @@ export const industryList = [
   'Service',
   'Other'
 ];
+
+export const primaryColorScheme = {
+  domain: [
+    '#0188C2',
+    '#004F70',
+    '#4AFFFE',
+    '#00b862',
+    '#FFFC63',
+    '#FDBD2D',
+    '#FC8A25',
+    '#FA4F1E',
+    '#FA141B',
+    '#BA38D1'
+  ]
+};

@@ -35,7 +35,13 @@
         Cancel
       </button>
     </div>
-    <button mat-raised-button color="primary" class="m-2" *ngIf="!isCreating">
+    <button
+      mat-raised-button
+      color="primary"
+      class="m-2"
+      *ngIf="!isCreating"
+      [routerLink]="['analytics']"
+    >
       Company Analytics
     </button>
   </div>

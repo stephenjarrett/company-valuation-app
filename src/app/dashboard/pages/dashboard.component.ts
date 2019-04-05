@@ -23,4 +23,14 @@ export class DashboardComponent implements OnInit {
         this.targetCompanies = targetCompanies;
       });
   }
+
+  // TODO:
+  // add ngUnsubscribes-takeUntil on destroy
+  // Add duplicate company name validator
+  // email and number format validation
+  // add toggle button to switch between line and bar graph
+  // use pie charts to display status/industry/size on compare?
+  // compare.. select 2 or more companies and a financial stat to compare on bars graph. Easily toggle between dataSets and companies
+  // make financial data more dynamic with the # of fields.. minimum of 3 year of data.. but add as many as you want
+  // more/clean up CSS
 }
