@@ -1,5 +1,7 @@
 # CompanyValuationApp
 
+This app is a basic CRUD, prototype web app that is used to help track and analyze potential target companies for inorganic growth through acquistion. The form requires you to enter financial history data on the companies and renders a basic chart for each financial category using ngx-charts. In the future I would build out the charting and analytics further to add different chart types and more flexibility on the financial data history. There will also be a page where you can compare metrics from companies against each other in various charts via the compare link. There will be a lot of flexibility on that page in terms of which companies get charted, what years are taken into account and also what type of chart and financial metrics you want to look at.
+
 # Installion
 To run this project simply clone the repository and then run an npm install to get all the dependencies. This web app relies on json-server to mock a back end with json data.
 
