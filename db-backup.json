@@ -4,7 +4,7 @@
       "id": 1,
       "status": "Researching",
       "companyDetails": {
-        "companyName": "Loogle33",
+        "companyName": "Loogle",
         "companyIndustry": "Information Technology",
         "companySize": "51-200 employees",
         "yearFounded": 2000,
@@ -94,12 +94,12 @@
       "id": 2,
       "status": "Approved",
       "companyDetails": {
-        "companyName": "Moogle333",
-        "companyIndustry": "Information Technology",
+        "companyName": "Mike's Golf Shop",
+        "companyIndustry": "Aerospace",
         "companySize": "10,001+ employees",
         "yearFounded": 1991,
-        "city": "San Jose",
-        "state": "California",
+        "city": "Chattanooga",
+        "state": "Tennessee",
         "description": null
       },
       "keyContact": {
@@ -167,7 +167,7 @@
         "profitMargin": [
           {
             "year": 2016,
-            "value": 501
+            "value": 502
           },
           {
             "year": 2017,
@@ -184,12 +184,12 @@
       "id": 3,
       "status": "Approved",
       "companyDetails": {
-        "companyName": "Google",
-        "companyIndustry": "Information Technology",
-        "companySize": "10,001+ employees",
+        "companyName": "Premium",
+        "companyIndustry": "Hospitality",
+        "companySize": "51-200 employees",
         "yearFounded": 1991,
-        "city": "San Jose",
-        "state": "California"
+        "city": "Huntsville",
+        "state": "Alabama"
       },
       "companyFinancials": {
         "assets": [
@@ -273,14 +273,85 @@
       "id": 4,
       "status": "Pending Approval",
       "companyDetails": {
-        "companyName": "Voogle",
+        "companyName": "DigitalCrafts",
         "companyIndustry": "Information Technology",
-        "companySize": "10,001+ employees",
+        "companySize": "1-10 employees",
         "yearFounded": 1991,
-        "city": "San Jose",
-        "state": "California"
+        "city": "Atlanta",
+        "state": "Georgia"
       },
-      "companyFinancials": {},
+      "companyFinancials": {
+        "assets": [
+          {
+            "year": 2016,
+            "value": 42
+          },
+          {
+            "year": 2017,
+            "value": 54
+          },
+          {
+            "year": 2018,
+            "value": 44
+          }
+        ],
+        "liabilities": [
+          {
+            "year": 2016,
+            "value": 12
+          },
+          {
+            "year": 2017,
+            "value": 10
+          },
+          {
+            "year": 2018,
+            "value": 22
+          }
+        ],
+        "profitMargin": [
+          {
+            "year": 2016,
+            "value": 500
+          },
+          {
+            "year": 2017,
+            "value": 700
+          },
+          {
+            "year": 2018,
+            "value": 800
+          }
+        ],
+        "salesRevenue": [
+          {
+            "year": 2016,
+            "value": 1000
+          },
+          {
+            "year": 2017,
+            "value": 1200
+          },
+          {
+            "year": 2018,
+            "value": 1600
+          }
+        ],
+        "operatingCosts": [
+          {
+            "year": 2016,
+            "value": 300
+          },
+          {
+            "year": 2017,
+            "value": 400
+          },
+          {
+            "year": 2018,
+            "value": 302
+          }
+        ]
+      },
       "keyContact": {
         "name": "John Doe",
         "phone": 5554239493,
@@ -380,12 +451,12 @@
       "id": 6,
       "status": "Declined",
       "companyDetails": {
-        "companyName": "Roogle",
-        "companyIndustry": "Information Technology",
-        "companySize": "10,001+ employees",
+        "companyName": "Bellhops",
+        "companyIndustry": "Software",
+        "companySize": "501-1000 employees",
         "yearFounded": 1991,
-        "city": "San Jose",
-        "state": "California"
+        "city": "Chattanooga",
+        "state": "Tennessee"
       },
       "companyFinancials": {
         "assets": [
@@ -469,12 +540,12 @@
       "id": 7,
       "status": "Declined",
       "companyDetails": {
-        "companyName": "Roogle",
-        "companyIndustry": "Information Technology",
+        "companyName": "Turner",
+        "companyIndustry": "Mass media",
         "companySize": "10,001+ employees",
         "yearFounded": 1991,
-        "city": "San Jose",
-        "state": "California"
+        "city": "Atlanta",
+        "state": "Georgia"
       },
       "companyFinancials": {
         "assets": [
@@ -558,12 +629,12 @@
       "id": 8,
       "status": "Declined",
       "companyDetails": {
-        "companyName": "Roogle",
+        "companyName": "Cool Company",
         "companyIndustry": "Information Technology",
-        "companySize": "10,001+ employees",
+        "companySize": "1-10 employees",
         "yearFounded": 1991,
-        "city": "San Jose",
-        "state": "California"
+        "city": "Seattle",
+        "state": "Washington"
       },
       "companyFinancials": {
         "assets": [
