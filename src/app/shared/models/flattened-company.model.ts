@@ -1,4 +1,4 @@
-export interface FlattenedCompany {
+export class FlattenedCompany {
   id: number;
   companyName: string;
   status: string;

@@ -5,30 +5,20 @@ export const companyRoutes: Routes = [
   {
     path: 'company',
     children: [
-      // {
-      //     path: 'create',
-      //     component: PeopleComponent,
-      //     data: {
-      //         authorities: ['ADMIN', 'PEOPLE_ADMIN', 'PEOPLE_EDIT'],
-      //         detailAuth: {
-      //             edit: ['ADMIN', 'PEOPLE_ADMIN', 'PEOPLE_EDIT'],
-      //             delete: ['ADMIN', 'PEOPLE_ADMIN', 'PEOPLE_EDIT'],
-      //             viewSensitive: ['ADMIN', 'PEOPLE_SENSITIVE']
-      //         }
-      //     },
-      //     canActivate: [RouteAccessGuard],
-      // },
+      {
+        path: 'create',
+        component: CompanyDetailsComponent,
+        data: {
+          creating: true
+        }
+      },
       {
         path: ':id',
         component: CompanyDetailsComponent,
-        data: {}
+        data: {
+          creating: false
+        }
       }
-      // },
-      // {
-      //   path: '',
-      //   component: DashboardComponent,
-      //   data: {}
-      // }
     ]
   }
 ];

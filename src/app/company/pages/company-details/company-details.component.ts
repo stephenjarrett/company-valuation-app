@@ -1,5 +1,6 @@
+import { CompanyFinancials } from './../../../shared/models/company-financials.model';
+import { TargetCompany } from 'src/app/shared/models/target-company.model';
 import { Observable } from 'rxjs';
-import { TargetCompany } from './../../../shared/models/target-company.model';
 import { Component, OnInit } from '@angular/core';
 import { TargetCompanyService } from 'src/app/shared/services/target-company.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -26,6 +27,8 @@ import {
 import { MatSnackBar } from '@angular/material';
 import { SnackbarComponent } from 'src/app/shared/components/snackbar/snackbar.component';
 import { FinancialDataPoint } from 'src/app/shared/models/financial-data-point.model';
+import { KeyContact } from 'src/app/shared/models/key-contact.model';
+import { CompanyDetail } from 'src/app/shared/models/company-detail.model';
 
 @Component({
   selector: 'app-company-details',
@@ -33,6 +36,7 @@ import { FinancialDataPoint } from 'src/app/shared/models/financial-data-point.m
   styleUrls: ['./company-details.component.scss']
 })
 export class CompanyDetailsComponent implements OnInit {
+  isCreating = true;
   showEdit = true;
   showDelete = true;
   showSave = false;
@@ -40,12 +44,25 @@ export class CompanyDetailsComponent implements OnInit {
   filteredIndustries: Observable<string[]>;
   filteredYears: Observable<string[] | number[]>;
   company: TargetCompany;
+  companyId: number;
   companyDetailForm: FormGroup;
   industries: string[] = [];
   yearRange: number[] = [];
   statusOptions: string[];
   sizeOptions: string[];
   stateOptions: string[];
+  assets: FinancialDataPoint[];
+  liabilities: FinancialDataPoint[];
+  profitMargin: FinancialDataPoint[];
+  salesRevenue: FinancialDataPoint[];
+  operatingCosts: FinancialDataPoint[];
+  financialDataTypes = [
+    'assets',
+    'liabilities',
+    'profitMargin',
+    'salesRevenue',
+    'operatingCosts'
+  ];
 
   constructor(
     private targetCompanyService: TargetCompanyService,
@@ -56,16 +73,12 @@ export class CompanyDetailsComponent implements OnInit {
   ) {}
 
   // TODO: Add accordion on main/contacts/financials
-  // plug in company data to form
-  // add save functionality for update form
-  // enable/disable fields and save button based on changes and showEdit
-  // check validation
-  // work on create form - use stepper?
   // company analytics.. compare trend in bar or line graph and calculate % growth or decline for each stat
   // compare.. select 2 or more companies and a financial stat to compare on bar graph
   // use pie charts to display status/industry/size
 
   ngOnInit() {
+    this.isCreating = this.route.snapshot.data.creating;
     this.initForm();
     this.getData();
   }
@@ -76,7 +89,23 @@ export class CompanyDetailsComponent implements OnInit {
     this.getStatusOptions();
     this.getSizeOptions();
     this.getStateOptions();
-    this.getCompanyDetails();
+    if (!this.isCreating) {
+      this.getCompanyDetails();
+    } else {
+      this.initForCreate();
+    }
+  }
+
+  initForCreate() {
+    this.showEdit = false;
+    this.showSave = true;
+    this.showCancel = true;
+    this.showDelete = false;
+    this.assets = [];
+    this.liabilities = [];
+    this.salesRevenue = [];
+    this.profitMargin = [];
+    this.operatingCosts = [];
   }
 
   initForm() {
@@ -124,40 +153,27 @@ export class CompanyDetailsComponent implements OnInit {
       liabilities: this.fb.array([]),
       profitMargin: this.fb.array([]),
       salesRevenue: this.fb.array([]),
-      grossMargin: this.fb.array([]),
       operatingCosts: this.fb.array([])
-      // assets: new FormArray([
-      //   new FormGroup({
-      //     year: new FormControl({ value: 2016, disabled: true }),
-      //     value: new FormControl({ value: null, disabled: true }, [
-      //       Validators.required
-      //     ])
-      //   }),
-      //   new FormGroup({
-      //     year: new FormControl({ value: 2017, disabled: true }),
-      //     value: new FormControl({ value: null, disabled: true }, [
-      //       Validators.required
-      //     ])
-      //   }),
-      //   new FormGroup({
-      //     year: new FormControl({ value: 2018, disabled: true }),
-      //     value: new FormControl({ value: null, disabled: true }, [
-      //       Validators.required
-      //     ])
-      //   })
-      // ])
     });
+
+    if (this.isCreating) {
+      toggleFormFieldsState(true, this.companyDetailForm);
+      this.financialDataTypes.forEach(type => this.addFinancialData(type));
+    } else {
+      toggleFormFieldsState(false, this.companyDetailForm);
+    }
   }
 
   getCompanyDetails(): void {
-    const companyId: number = parseInt(
-      this.route.snapshot.paramMap.get('id'),
-      0
-    );
-    this.targetCompanyService.findById(companyId).subscribe(
+    this.companyId = parseInt(this.route.snapshot.paramMap.get('id'), 0);
+    this.targetCompanyService.findById(this.companyId).subscribe(
       (data: TargetCompany) => {
         this.company = data;
-        console.log(this.company);
+        this.assets = data.companyFinancials.assets;
+        this.liabilities = data.companyFinancials.liabilities;
+        this.salesRevenue = data.companyFinancials.salesRevenue;
+        this.profitMargin = data.companyFinancials.profitMargin;
+        this.operatingCosts = data.companyFinancials.operatingCosts;
         this.setFormValues();
       },
       (error: HttpErrorResponse) => {
@@ -181,9 +197,44 @@ export class CompanyDetailsComponent implements OnInit {
       contactName: this.company.keyContact.name,
       contactEmail: this.company.keyContact.email,
       contactPhone: this.company.keyContact.phone
-      // assets: this.company.companyFinancials.assets
     });
+
+    // add financial data to form
+    this.financialDataTypes.forEach(type => this.addFinancialData(type));
   }
+
+  addFinancialData(dataType: string) {
+    const controls = this.companyDetailForm.controls[dataType] as FormArray;
+    let valuesArray: FinancialDataPoint[];
+    if (this.isCreating) {
+      valuesArray = [
+        { year: 2016, value: null },
+        { year: 2017, value: null },
+        { year: 2018, value: null }
+      ];
+    } else {
+      valuesArray = this.company.companyFinancials[dataType];
+    }
+    valuesArray.forEach((dataPoint: FinancialDataPoint) => {
+      controls.push(
+        this.fb.group({ year: dataPoint.year, value: dataPoint.value })
+      );
+    });
+    toggleFormFieldsState(this.isCreating, this.companyDetailForm);
+  }
+
+  // addFinancialDataForCreate(dataType: string) {
+  //   console.log(dataType);
+  //   console.log(this.assetsControls.controls);
+  //   const controls = this.companyDetailForm.controls[dataType] as FormArray;
+  //   const years = [2016, 2017, 2018];
+  //   years.forEach((year: number) => {
+  //     controls.push(this.fb.group({ year: 'test', value: 1 }));
+  //   });
+  //   // console.log(this.companyDetailForm);
+  //   console.log(this.assetsControls);
+  //   toggleFormFieldsState(true, this.companyDetailForm);
+  // }
 
   getIndustries(): void {
     this.industries = industryList.sort();
@@ -192,6 +243,11 @@ export class CompanyDetailsComponent implements OnInit {
       startWith(''),
       map(value => this._filterString(value, this.industries))
     );
+  }
+
+  last3Years(): number[] {
+    let currentYear = Date.now();
+    return;
   }
 
   getYears(): void {
@@ -229,7 +285,6 @@ export class CompanyDetailsComponent implements OnInit {
     this.showDelete = true;
     this.showSave = false;
     this.showCancel = false;
-
     this.companyDetailForm.reset({
       companyName: this.company.companyDetails.companyName,
       status: this.company.status,
@@ -243,10 +298,39 @@ export class CompanyDetailsComponent implements OnInit {
         : null,
       contactName: this.company.keyContact.name,
       contactEmail: this.company.keyContact.email,
-      contactPhone: this.company.keyContact.phone
+      contactPhone: this.company.keyContact.phone,
+      assets: this.company.companyFinancials.assets,
+      liabilities: this.company.companyFinancials.liabilities,
+      salesRevenue: this.company.companyFinancials.salesRevenue,
+      operatingCosts: this.company.companyFinancials.operatingCosts,
+      profitMargin: this.company.companyFinancials.profitMargin
     });
 
     toggleFormFieldsState(false, this.companyDetailForm);
+  }
+
+  onClickSave() {
+    const updatedCompany = this.buildTargetCompanyObject();
+    this.targetCompanyService.update(this.company.id, updatedCompany).subscribe(
+      () => {
+        this.snackBar.openFromComponent(SnackbarComponent, {
+          data: {
+            baseMessage: 'Successfully updated company: ',
+            highlight: this.company.companyDetails.companyName
+          },
+          duration: 4000
+        });
+        toggleFormFieldsState(false, this.companyDetailForm);
+        this.showCancel = false;
+        this.showSave = false;
+        this.showDelete = true;
+        this.showEdit = true;
+        this.company = this.buildTargetCompanyObject();
+      },
+      (error: HttpErrorResponse) => {
+        console.log(error);
+      }
+    );
   }
 
   onClickDelete() {
@@ -265,6 +349,39 @@ export class CompanyDetailsComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+
+  buildTargetCompanyObject(): TargetCompany {
+    const targetCompany = new TargetCompany();
+    const keyContact = new KeyContact();
+    const companyDetail = new CompanyDetail();
+    const companyFinancials = new CompanyFinancials();
+    if (!this.isCreating) {
+      // if it is an update then we have an id
+      targetCompany.id = this.companyId;
+    }
+    targetCompany.status = this.status.value;
+    companyDetail.companyName = this.companyName.value;
+    companyDetail.companyIndustry = this.industry.value;
+    companyDetail.companySize = this.size.value;
+    companyDetail.yearFounded = this.yearFounded.value;
+    companyDetail.city = this.city.value;
+    companyDetail.state = this.state.value;
+    companyDetail.description = this.description.value
+      ? this.description.value
+      : null;
+    keyContact.name = this.contactName.value;
+    keyContact.email = this.contactEmail.value;
+    keyContact.phone = this.contactPhone.value;
+    companyFinancials.assets = this.assetsControls.value;
+    companyFinancials.liabilities = this.liabilitiesControls.value;
+    companyFinancials.salesRevenue = this.salesRevenueControls.value;
+    companyFinancials.operatingCosts = this.operatingCostsControls.value;
+    companyFinancials.profitMargin = this.profitMarginControls.value;
+    targetCompany.companyDetails = companyDetail;
+    targetCompany.keyContact = keyContact;
+    targetCompany.companyFinancials = companyFinancials;
+    return targetCompany;
   }
 
   get _showEdit(): boolean {
@@ -303,5 +420,21 @@ export class CompanyDetailsComponent implements OnInit {
   }
   get contactPhone(): AbstractControl {
     return this.companyDetailForm.get('contactPhone');
+  }
+
+  get assetsControls() {
+    return this.companyDetailForm.get('assets') as FormArray;
+  }
+  get liabilitiesControls() {
+    return this.companyDetailForm.get('liabilities') as FormArray;
+  }
+  get salesRevenueControls() {
+    return this.companyDetailForm.get('salesRevenue') as FormArray;
+  }
+  get profitMarginControls() {
+    return this.companyDetailForm.get('profitMargin') as FormArray;
+  }
+  get operatingCostsControls() {
+    return this.companyDetailForm.get('operatingCosts') as FormArray;
   }
 }

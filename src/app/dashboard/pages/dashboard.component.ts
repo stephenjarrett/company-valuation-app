@@ -20,7 +20,6 @@ export class DashboardComponent implements OnInit {
     this.targetCompanyService
       .findAll()
       .subscribe((targetCompanies: TargetCompany[]) => {
-        console.log(targetCompanies);
         this.targetCompanies = targetCompanies;
       });
   }

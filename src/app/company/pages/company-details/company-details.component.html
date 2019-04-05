@@ -1,39 +1,42 @@
 <div class="container mt-5">
-  <div>
-    <button mat-raised-button color="primary">Company Analytics</button>
-  </div>
-  <div class="m-2">
-    <button
-      mat-raised-button
-      color="primary"
-      (click)="onClickEdit()"
-      *ngIf="showEdit"
-    >
-      Edit
-    </button>
-    <button
-      mat-raised-button
-      color="primary"
-      *ngIf="showDelete"
-      (click)="onClickDelete()"
-    >
-      Delete
-    </button>
-    <button
-      mat-raised-button
-      color="primary"
-      *ngIf="showSave"
-      [disabled]="!companyDetailForm.valid || companyDetailForm.pristine"
-    >
-      Save
-    </button>
-    <button
-      mat-raised-button
-      color="primary"
-      (click)="onClickCancel()"
-      *ngIf="showCancel"
-    >
-      Cancel
+  <div class="row" style="justify-content: space-between;">
+    <div class="m-2">
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="onClickEdit()"
+        *ngIf="showEdit"
+      >
+        Edit
+      </button>
+      <button
+        mat-raised-button
+        color="warn"
+        *ngIf="showDelete"
+        (click)="onClickDelete()"
+      >
+        Delete
+      </button>
+      <button
+        mat-raised-button
+        color="primary"
+        *ngIf="showSave"
+        (click)="onClickSave()"
+        [disabled]="!companyDetailForm.valid || companyDetailForm.pristine"
+      >
+        Save
+      </button>
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="onClickCancel()"
+        *ngIf="showCancel"
+      >
+        Cancel
+      </button>
+    </div>
+    <button mat-raised-button color="primary" class="m-2" *ngIf="!isCreating">
+      Company Analytics
     </button>
   </div>
   <form [formGroup]="companyDetailForm">
@@ -189,7 +192,7 @@
           </mat-form-field>
           <mat-form-field appearance="standard" class="col">
             <mat-label>*Contact Email</mat-label>
-            <input formControlName="contactEmail" matInput />
+            <input formControlName="contactEmail" matInput type="email" />
             <mat-error *ngIf="contactEmail.hasError('required')"
               >Contact email is required</mat-error
             >
@@ -199,7 +202,7 @@
           </mat-form-field>
           <mat-form-field appearance="standard" class="col">
             <mat-label>*Contact Phone</mat-label>
-            <input formControlName="contactPhone" matInput />
+            <input formControlName="contactPhone" matInput type="number" />
             <mat-error *ngIf="contactPhone.hasError('required')"
               >Contact phone is required</mat-error
             >
@@ -222,29 +225,154 @@
           </mat-panel-title>
           <mat-panel-description> </mat-panel-description>
         </mat-expansion-panel-header>
-        <!-- <div class="row">
-          <mat-form-field appearance="standard" class="col">
-            <mat-label>*Assets - 2016</mat-label>
-            <input formControlName="assets[0]" matInput />
-            <mat-error *ngIf="contactName.hasError('required')"
-              >Required</mat-error
+        <div>
+          <div><strong>Assets</strong></div>
+          <div formArrayName="assets" class="row">
+            <div
+              class="col"
+              *ngFor="let c of assetsControls?.controls; let i = index"
             >
-          </mat-form-field>
-          <mat-form-field appearance="standard" class="col">
-            <mat-label>*Assets - 2017</mat-label>
-            <input formControlName="assets[1]" matInput />
-            <mat-error *ngIf="contactEmail.hasError('required')"
-              >Required</mat-error
+              <mat-form-field
+                formGroupName="{{ i }}"
+                appearance="standard"
+                class="col"
+              >
+                <mat-label>{{ assets[i]?.year }}</mat-label>
+                <input
+                  formControlName="value"
+                  matInput
+                  required
+                  type="number"
+                />
+                <mat-error
+                  *ngIf="
+                    (assetsControls?.controls)[i].controls.value.hasError(
+                      'required'
+                    )
+                  "
+                  >Value is required</mat-error
+                >
+              </mat-form-field>
+            </div>
+          </div>
+          <div><strong>Liabilities</strong></div>
+          <div formArrayName="liabilities" class="row">
+            <div
+              class="col"
+              *ngFor="let c of liabilitiesControls?.controls; let i = index"
             >
-          </mat-form-field>
-          <mat-form-field appearance="standard" class="col">
-            <mat-label>*Assets - 2018</mat-label>
-            <input formControlName="assets[2]" matInput />
-            <mat-error *ngIf="contactPhone.hasError('required')"
-              >Required</mat-error
+              <mat-form-field
+                formGroupName="{{ i }}"
+                appearance="standard"
+                class="col"
+              >
+                <mat-label>{{ liabilities[i]?.year }}</mat-label>
+                <input
+                  formControlName="value"
+                  matInput
+                  required
+                  type="number"
+                />
+                <mat-error
+                  *ngIf="
+                    (liabilitiesControls?.controls)[i].controls.value.hasError(
+                      'required'
+                    )
+                  "
+                  >Value is required</mat-error
+                >
+              </mat-form-field>
+            </div>
+          </div>
+          <div><strong>Sales Revenue</strong></div>
+          <div formArrayName="salesRevenue" class="row">
+            <div
+              class="col"
+              *ngFor="let c of salesRevenueControls?.controls; let i = index"
             >
-          </mat-form-field>
-        </div> -->
+              <mat-form-field
+                formGroupName="{{ i }}"
+                appearance="standard"
+                class="col"
+              >
+                <mat-label>{{ salesRevenue[i]?.year }}</mat-label>
+                <input
+                  formControlName="value"
+                  matInput
+                  required
+                  type="number"
+                />
+                <mat-error
+                  *ngIf="
+                    (salesRevenueControls?.controls)[i].controls.value.hasError(
+                      'required'
+                    )
+                  "
+                  >Value is required</mat-error
+                >
+              </mat-form-field>
+            </div>
+          </div>
+          <div><strong>Operating Costs</strong></div>
+          <div formArrayName="operatingCosts" class="row">
+            <div
+              class="col"
+              *ngFor="let c of operatingCostsControls?.controls; let i = index"
+            >
+              <mat-form-field
+                formGroupName="{{ i }}"
+                appearance="standard"
+                class="col"
+              >
+                <mat-label>{{ operatingCosts[i]?.year }}</mat-label>
+                <input
+                  formControlName="value"
+                  matInput
+                  required
+                  type="number"
+                />
+                <mat-error
+                  *ngIf="
+                    (operatingCostsControls?.controls)[
+                      i
+                    ].controls.value.hasError('required')
+                  "
+                  >Value is required</mat-error
+                >
+              </mat-form-field>
+            </div>
+          </div>
+          <div><strong>Profit Margin</strong></div>
+
+          <div formArrayName="profitMargin" class="row">
+            <div
+              class="col"
+              *ngFor="let c of profitMarginControls?.controls; let i = index"
+            >
+              <mat-form-field
+                formGroupName="{{ i }}"
+                appearance="standard"
+                class="col"
+              >
+                <mat-label>{{ profitMargin[i]?.year }}</mat-label>
+                <input
+                  formControlName="value"
+                  matInput
+                  required
+                  type="number"
+                />
+                <mat-error
+                  *ngIf="
+                    (profitMarginControls?.controls)[i].controls.value.hasError(
+                      'required'
+                    )
+                  "
+                  >Value is required</mat-error
+                >
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
       </mat-expansion-panel>
     </mat-accordion>
   </form>

@@ -1,4 +1,4 @@
-export interface KeyContact {
+export class KeyContact {
   name: string;
   phone: number;
   email: string;

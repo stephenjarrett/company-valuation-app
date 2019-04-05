@@ -4,13 +4,18 @@
       "id": 1,
       "status": "Researching",
       "companyDetails": {
-        "companyName": "Loogle",
+        "companyName": "Loogle33",
         "companyIndustry": "Information Technology",
         "companySize": "51-200 employees",
         "yearFounded": 2000,
         "city": "Atlanta",
         "state": "Georgia",
         "description": "n/a"
+      },
+      "keyContact": {
+        "name": "John Doe",
+        "email": "john.doe@lougle.com",
+        "phone": 5554239493
       },
       "companyFinancials": {
         "assets": [
@@ -26,30 +31,153 @@
             "year": 2018,
             "value": 44
           }
+        ],
+        "liabilities": [
+          {
+            "year": 2016,
+            "value": 12
+          },
+          {
+            "year": 2017,
+            "value": 10
+          },
+          {
+            "year": 2018,
+            "value": 22
+          }
+        ],
+        "profitMargin": [
+          {
+            "year": 2016,
+            "value": 500
+          },
+          {
+            "year": 2017,
+            "value": 700
+          },
+          {
+            "year": 2018,
+            "value": 800
+          }
+        ],
+        "salesRevenue": [
+          {
+            "year": 2016,
+            "value": 1000
+          },
+          {
+            "year": 2017,
+            "value": 1200
+          },
+          {
+            "year": 2018,
+            "value": 1600
+          }
+        ],
+        "operatingCosts": [
+          {
+            "year": 2016,
+            "value": 300
+          },
+          {
+            "year": 2017,
+            "value": 400
+          },
+          {
+            "year": 2018,
+            "value": 302
+          }
         ]
-      },
-      "keyContact": {
-        "name": "John Doe",
-        "phone": 5554239493,
-        "email": "john.doe@lougle.com"
       }
     },
     {
       "id": 2,
       "status": "Approved",
       "companyDetails": {
-        "companyName": "Moogle",
+        "companyName": "Moogle3333",
         "companyIndustry": "Information Technology",
         "companySize": "10,001+ employees",
         "yearFounded": 1991,
         "city": "San Jose",
-        "state": "California"
+        "state": "California",
+        "description": null
       },
-      "companyFinancials": {},
       "keyContact": {
         "name": "John Doe",
-        "phone": 5554239493,
-        "email": "john.doe@google.com"
+        "email": "john.doe@google.com",
+        "phone": 5554239493
+      },
+      "companyFinancials": {
+        "assets": [
+          {
+            "year": 2016,
+            "value": 46
+          },
+          {
+            "year": 2017,
+            "value": 55
+          },
+          {
+            "year": 2018,
+            "value": 44
+          }
+        ],
+        "liabilities": [
+          {
+            "year": 2016,
+            "value": 11
+          },
+          {
+            "year": 2017,
+            "value": 11
+          },
+          {
+            "year": 2018,
+            "value": 25
+          }
+        ],
+        "salesRevenue": [
+          {
+            "year": 2016,
+            "value": 1001
+          },
+          {
+            "year": 2017,
+            "value": 1200
+          },
+          {
+            "year": 2018,
+            "value": 1600
+          }
+        ],
+        "operatingCosts": [
+          {
+            "year": 2016,
+            "value": 301
+          },
+          {
+            "year": 2017,
+            "value": 400
+          },
+          {
+            "year": 2018,
+            "value": 302
+          }
+        ],
+        "profitMargin": [
+          {
+            "year": 2016,
+            "value": 501
+          },
+          {
+            "year": 2017,
+            "value": 700
+          },
+          {
+            "year": 2018,
+            "value": 800
+          }
+        ]
       }
     },
     {
@@ -63,7 +191,78 @@
         "city": "San Jose",
         "state": "California"
       },
-      "companyFinancials": {},
+      "companyFinancials": {
+        "assets": [
+          {
+            "year": 2016,
+            "value": 42
+          },
+          {
+            "year": 2017,
+            "value": 54
+          },
+          {
+            "year": 2018,
+            "value": 44
+          }
+        ],
+        "liabilities": [
+          {
+            "year": 2016,
+            "value": 12
+          },
+          {
+            "year": 2017,
+            "value": 10
+          },
+          {
+            "year": 2018,
+            "value": 22
+          }
+        ],
+        "profitMargin": [
+          {
+            "year": 2016,
+            "value": 500
+          },
+          {
+            "year": 2017,
+            "value": 700
+          },
+          {
+            "year": 2018,
+            "value": 800
+          }
+        ],
+        "salesRevenue": [
+          {
+            "year": 2016,
+            "value": 1000
+          },
+          {
+            "year": 2017,
+            "value": 1200
+          },
+          {
+            "year": 2018,
+            "value": 1600
+          }
+        ],
+        "operatingCosts": [
+          {
+            "year": 2016,
+            "value": 300
+          },
+          {
+            "year": 2017,
+            "value": 400
+          },
+          {
+            "year": 2018,
+            "value": 302
+          }
+        ]
+      },
       "keyContact": {
         "name": "John Doe",
         "phone": 5554239493,
@@ -99,7 +298,78 @@
         "city": "San Jose",
         "state": "California"
       },
-      "companyFinancials": {},
+      "companyFinancials": {
+        "assets": [
+          {
+            "year": 2016,
+            "value": 42
+          },
+          {
+            "year": 2017,
+            "value": 54
+          },
+          {
+            "year": 2018,
+            "value": 44
+          }
+        ],
+        "liabilities": [
+          {
+            "year": 2016,
+            "value": 12
+          },
+          {
+            "year": 2017,
+            "value": 10
+          },
+          {
+            "year": 2018,
+            "value": 22
+          }
+        ],
+        "profitMargin": [
+          {
+            "year": 2016,
+            "value": 500
+          },
+          {
+            "year": 2017,
+            "value": 700
+          },
+          {
+            "year": 2018,
+            "value": 800
+          }
+        ],
+        "salesRevenue": [
+          {
+            "year": 2016,
+            "value": 1000
+          },
+          {
+            "year": 2017,
+            "value": 1200
+          },
+          {
+            "year": 2018,
+            "value": 1600
+          }
+        ],
+        "operatingCosts": [
+          {
+            "year": 2016,
+            "value": 300
+          },
+          {
+            "year": 2017,
+            "value": 400
+          },
+          {
+            "year": 2018,
+            "value": 302
+          }
+        ]
+      },
       "keyContact": {
         "name": "John Doe",
         "phone": 5554239493,
@@ -117,7 +387,78 @@
         "city": "San Jose",
         "state": "California"
       },
-      "companyFinancials": {},
+      "companyFinancials": {
+        "assets": [
+          {
+            "year": 2016,
+            "value": 42
+          },
+          {
+            "year": 2017,
+            "value": 54
+          },
+          {
+            "year": 2018,
+            "value": 44
+          }
+        ],
+        "liabilities": [
+          {
+            "year": 2016,
+            "value": 12
+          },
+          {
+            "year": 2017,
+            "value": 10
+          },
+          {
+            "year": 2018,
+            "value": 22
+          }
+        ],
+        "profitMargin": [
+          {
+            "year": 2016,
+            "value": 500
+          },
+          {
+            "year": 2017,
+            "value": 700
+          },
+          {
+            "year": 2018,
+            "value": 800
+          }
+        ],
+        "salesRevenue": [
+          {
+            "year": 2016,
+            "value": 1000
+          },
+          {
+            "year": 2017,
+            "value": 1200
+          },
+          {
+            "year": 2018,
+            "value": 1600
+          }
+        ],
+        "operatingCosts": [
+          {
+            "year": 2016,
+            "value": 300
+          },
+          {
+            "year": 2017,
+            "value": 400
+          },
+          {
+            "year": 2018,
+            "value": 302
+          }
+        ]
+      },
       "keyContact": {
         "name": "John Doe",
         "phone": 5554239493,
@@ -135,7 +476,78 @@
         "city": "San Jose",
         "state": "California"
       },
-      "companyFinancials": {},
+      "companyFinancials": {
+        "assets": [
+          {
+            "year": 2016,
+            "value": 42
+          },
+          {
+            "year": 2017,
+            "value": 54
+          },
+          {
+            "year": 2018,
+            "value": 44
+          }
+        ],
+        "liabilities": [
+          {
+            "year": 2016,
+            "value": 12
+          },
+          {
+            "year": 2017,
+            "value": 10
+          },
+          {
+            "year": 2018,
+            "value": 22
+          }
+        ],
+        "profitMargin": [
+          {
+            "year": 2016,
+            "value": 500
+          },
+          {
+            "year": 2017,
+            "value": 700
+          },
+          {
+            "year": 2018,
+            "value": 800
+          }
+        ],
+        "salesRevenue": [
+          {
+            "year": 2016,
+            "value": 1000
+          },
+          {
+            "year": 2017,
+            "value": 1200
+          },
+          {
+            "year": 2018,
+            "value": 1600
+          }
+        ],
+        "operatingCosts": [
+          {
+            "year": 2016,
+            "value": 300
+          },
+          {
+            "year": 2017,
+            "value": 400
+          },
+          {
+            "year": 2018,
+            "value": 302
+          }
+        ]
+      },
       "keyContact": {
         "name": "John Doe",
         "phone": 5554239493,
@@ -153,7 +565,78 @@
         "city": "San Jose",
         "state": "California"
       },
-      "companyFinancials": {},
+      "companyFinancials": {
+        "assets": [
+          {
+            "year": 2016,
+            "value": 42
+          },
+          {
+            "year": 2017,
+            "value": 54
+          },
+          {
+            "year": 2018,
+            "value": 44
+          }
+        ],
+        "liabilities": [
+          {
+            "year": 2016,
+            "value": 12
+          },
+          {
+            "year": 2017,
+            "value": 10
+          },
+          {
+            "year": 2018,
+            "value": 22
+          }
+        ],
+        "profitMargin": [
+          {
+            "year": 2016,
+            "value": 500
+          },
+          {
+            "year": 2017,
+            "value": 700
+          },
+          {
+            "year": 2018,
+            "value": 800
+          }
+        ],
+        "salesRevenue": [
+          {
+            "year": 2016,
+            "value": 1000
+          },
+          {
+            "year": 2017,
+            "value": 1200
+          },
+          {
+            "year": 2018,
+            "value": 1600
+          }
+        ],
+        "operatingCosts": [
+          {
+            "year": 2016,
+            "value": 300
+          },
+          {
+            "year": 2017,
+            "value": 400
+          },
+          {
+            "year": 2018,
+            "value": 302
+          }
+        ]
+      },
       "keyContact": {
         "name": "John Doe",
         "phone": 5554239493,

@@ -1,4 +1,4 @@
-export interface CompanyDetail {
+export class CompanyDetail {
   companyName: string;
   companyIndustry: string;
   companySize: number;
