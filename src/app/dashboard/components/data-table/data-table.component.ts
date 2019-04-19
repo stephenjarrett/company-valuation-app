@@ -14,9 +14,8 @@ export class DataTableComponent implements OnInit, OnChanges {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   dataSource = new MatTableDataSource<FlattenedCompany>();
-  // defaultSort: string;
-  // pageSize = 10;
   pageSizeOptions: number[] = [10, 25, 50, 100, 250];
+  // list of headers for mat data table
   displayedColumns: string[] = [
     'companyName',
     'status',
@@ -42,6 +41,7 @@ export class DataTableComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
+    // flatten nested object for easy filter/sort on mat data table
     const flattenedCompanyArray: FlattenedCompany[] = [];
     this.data.forEach((company: TargetCompany) => {
       flattenedCompanyArray.push({
@@ -56,12 +56,6 @@ export class DataTableComponent implements OnInit, OnChanges {
     });
     this.dataSource.data = flattenedCompanyArray;
   }
-
-  // applyFilter(filterValue: string) {
-  //   filterValue = filterValue.trim(); // Remove whitespace
-  //   filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
-  //   this.dataSource.filter = filterValue;
-  // }
 
   onSearchClear() {
     this.searchKey = '';

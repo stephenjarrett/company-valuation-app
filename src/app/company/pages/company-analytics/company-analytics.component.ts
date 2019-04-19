@@ -19,6 +19,7 @@ export class CompanyAnalyticsComponent implements OnInit {
   profitMargin: FinancialDataPoint[];
   operatingCosts: FinancialDataPoint[];
   chartData = {};
+  // Tabs of financials to switch between
   financialDataTypes = [
     { type: 'assets', name: 'Assets' },
     { type: 'liabilities', name: 'Liabilities' },
@@ -41,6 +42,7 @@ export class CompanyAnalyticsComponent implements OnInit {
     this.targetCompanyService.findById(this.companyId).subscribe(
       (data: TargetCompany) => {
         this.financialDataTypes.forEach(dataType => {
+          // add financial data to chartData object for each dataType
           this.chartData[dataType.type] = data.companyFinancials[dataType.type];
         });
         this.company = data;

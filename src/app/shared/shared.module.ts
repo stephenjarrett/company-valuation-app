@@ -1,5 +1,4 @@
 import { SortPipe } from './pipes/sort.pipe';
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import {
   MatIconModule,

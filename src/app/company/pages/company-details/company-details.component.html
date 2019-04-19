@@ -17,6 +17,7 @@
       >
         Delete
       </button>
+      <!-- form must be valid or have a change (if updating) to allow a save -->
       <button
         mat-raised-button
         color="primary"
@@ -56,8 +57,6 @@
           </mat-panel-title>
           <mat-panel-description> </mat-panel-description>
         </mat-expansion-panel-header>
-        <!-- <mat-card> -->
-        <!-- <mat-card-content class="flex"> -->
         <div class="row">
           <mat-form-field appearance="standard" class="col">
             <mat-label>*Company Name</mat-label>
@@ -172,8 +171,6 @@
             >Maximum of 1000 characters</mat-error
           >
         </mat-form-field>
-        <!-- </mat-card-content> -->
-        <!-- </mat-card> -->
       </mat-expansion-panel>
 
       <mat-expansion-panel>
@@ -215,9 +212,6 @@
             <mat-error *ngIf="contactPhone.hasError('maxlength')"
               >Maximum of 100 characters</mat-error
             >
-            <!-- <mat-error *ngIf="companyName.hasError('companyNameInUse')">{{
-                  companyName.getError('companyNameInUse').value
-                }}</mat-error> -->
           </mat-form-field>
         </div>
       </mat-expansion-panel>
@@ -231,8 +225,10 @@
           </mat-panel-title>
           <mat-panel-description> </mat-panel-description>
         </mat-expansion-panel-header>
+        <!-- change this to ngFor over each financial type -->
         <div>
           <div><strong>Assets</strong></div>
+          <!-- loop through each year of specific form controll array -->
           <div formArrayName="assets" class="row">
             <div
               class="col"
@@ -243,6 +239,7 @@
                 appearance="standard"
                 class="col"
               >
+                <!-- Label is year of financial data point -->
                 <mat-label>{{ c?.value.year }}</mat-label>
                 <input
                   formControlName="value"

@@ -1,11 +1,13 @@
 <div class="mt-3">
   <mat-divider></mat-divider>
   <mat-tab-group animationDuration="500ms" mat-align-tabs="center">
+    <!-- build tab for each financial data tab and pass in the typeName and typeData to the bar chart -->
     <mat-tab
       label="{{ dataType.name }}"
       *ngFor="let dataType of financialDataTypes"
     >
       <div class="row flex mt-5">
+        <!-- Radio button to switch between graph types -->
         <!-- <mat-radio-group aria-label="" class="" [(ngModel)]="graphType">
           <mat-radio-button value="bar" class="m-2">Bar Chart</mat-radio-button>
           <mat-radio-button value="line" class="m-2"

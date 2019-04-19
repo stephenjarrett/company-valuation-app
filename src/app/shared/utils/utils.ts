@@ -18,6 +18,8 @@ export function toggleFormFieldsState(toggle: boolean, form: FormGroup) {
 }
 
 export function buildRange(start, end) {
-  if (start === end) return [start];
+  if (start === end) {
+    return [start];
+  }
   return [start, ...buildRange(start + 1, end)];
 }

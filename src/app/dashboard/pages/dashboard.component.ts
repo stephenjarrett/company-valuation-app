@@ -17,6 +17,7 @@ export class DashboardComponent implements OnInit {
   }
 
   getTargetCompanies() {
+    // get companies from json-server
     this.targetCompanyService
       .findAll()
       .subscribe((targetCompanies: TargetCompany[]) => {
@@ -25,11 +26,13 @@ export class DashboardComponent implements OnInit {
   }
 
   // TODO:
-  // add ngUnsubscribes-takeUntil on destroy
+  // add ngUnsubscribes-takeUntil on destroy -> prevent memory leaks
+  // utilize replay subject for watching data changes?
   // Add duplicate company name validator
   // email and number format validation
   // add toggle button to switch between line and bar graph
   // use pie charts to display status/industry/size on compare?
+  // calculate performance increase/decrease on graphs and display
   // compare.. select 2 or more companies and a financial stat to compare on bars graph. Easily toggle between dataSets and companies
   // make financial data more dynamic with the # of fields.. minimum of 3 year of data.. but add as many as you want
   // more/clean up CSS

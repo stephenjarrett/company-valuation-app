@@ -16,7 +16,8 @@ import {
 import {
   getYearRange,
   toggleFormFieldsState,
-  buildRange
+  buildRange,
+  isNil
 } from 'src/app/shared/utils/utils';
 import { map, startWith } from 'rxjs/operators';
 import {
@@ -159,6 +160,7 @@ export class CompanyDetailsComponent implements OnInit {
     }
   }
 
+  // get company info from service and pull out the 5 financial data types
   getCompanyDetails(): void {
     this.companyId = parseInt(this.route.snapshot.paramMap.get('id'), 0);
     this.targetCompanyService.findById(this.companyId).subscribe(
@@ -178,6 +180,7 @@ export class CompanyDetailsComponent implements OnInit {
   }
 
   setFormValues() {
+    // patch values instead of set so you can set the formArray for financial data separately
     this.companyDetailForm.patchValue({
       companyName: this.company.companyDetails.companyName,
       status: this.company.status,
@@ -198,6 +201,7 @@ export class CompanyDetailsComponent implements OnInit {
     this.financialDataTypes.forEach(type => this.addFinancialData(type));
   }
 
+  // assigns each financial data type to form array of the last 3 years
   addFinancialData(dataType: string) {
     const controls = this.companyDetailForm.controls[dataType] as FormArray;
     let valuesArray: FinancialDataPoint[];
@@ -215,6 +219,7 @@ export class CompanyDetailsComponent implements OnInit {
     toggleFormFieldsState(this.isCreating, this.companyDetailForm);
   }
 
+  // used for mat autocomplete
   getIndustries(): void {
     this.industries = industryList.sort();
 
@@ -224,6 +229,7 @@ export class CompanyDetailsComponent implements OnInit {
     );
   }
 
+  // create dataSet with year value of the last 3 years
   build3YearDataPointArray(): FinancialDataPoint[] {
     const currentYear = new Date().getFullYear();
     const range = buildRange(currentYear - 3, currentYear - 1);
@@ -250,8 +256,12 @@ export class CompanyDetailsComponent implements OnInit {
   }
 
   private _filterString(value: string, options: string[]): string[] {
-    const filterValue = value.toLowerCase();
-    return options.filter(option => option.toLowerCase().includes(filterValue));
+    if (!isNil(value)) {
+      const filterValue = value.toLowerCase();
+      return options.filter(option =>
+        option.toLowerCase().includes(filterValue)
+      );
+    }
   }
 
   onClickEdit() {
@@ -264,32 +274,52 @@ export class CompanyDetailsComponent implements OnInit {
   }
 
   onClickCancel() {
+    // cancel asks as a return to homepage on creation.. else resets the form to DB values if there are changes
+    if (this.isCreating) {
+      this.router.navigateByUrl('/').then();
+      return;
+    }
+
     this.showEdit = true;
     this.showDelete = true;
     this.showSave = false;
     this.showCancel = false;
+    toggleFormFieldsState(false, this.companyDetailForm);
+
     this.companyDetailForm.reset({
-      companyName: this.company.companyDetails.companyName,
-      status: this.company.status,
-      industry: this.company.companyDetails.companyIndustry,
-      size: this.company.companyDetails.companySize,
-      yearFounded: this.company.companyDetails.yearFounded,
-      city: this.company.companyDetails.city,
-      state: this.company.companyDetails.state,
-      description: this.company.companyDetails.description
+      companyName: this.company
+        ? this.company.companyDetails.companyName
+        : null,
+      status: this.company ? this.company.status : null,
+      industry: this.company
+        ? this.company.companyDetails.companyIndustry
+        : null,
+      size: this.company ? this.company.companyDetails.companySize : null,
+      yearFounded: this.company
+        ? this.company.companyDetails.yearFounded
+        : null,
+      city: this.company ? this.company.companyDetails.city : null,
+      state: this.company ? this.company.companyDetails.state : null,
+      description: this.company
         ? this.company.companyDetails.description
         : null,
-      contactName: this.company.keyContact.name,
-      contactEmail: this.company.keyContact.email,
-      contactPhone: this.company.keyContact.phone,
-      assets: this.company.companyFinancials.assets,
-      liabilities: this.company.companyFinancials.liabilities,
-      salesRevenue: this.company.companyFinancials.salesRevenue,
-      operatingCosts: this.company.companyFinancials.operatingCosts,
-      profitMargin: this.company.companyFinancials.profitMargin
+      contactName: this.company ? this.company.keyContact.name : null,
+      contactEmail: this.company ? this.company.keyContact.email : null,
+      contactPhone: this.company ? this.company.keyContact.phone : null,
+      assets: this.company ? this.company.companyFinancials.assets : null,
+      liabilities: this.company
+        ? this.company.companyFinancials.liabilities
+        : null,
+      salesRevenue: this.company
+        ? this.company.companyFinancials.salesRevenue
+        : null,
+      operatingCosts: this.company
+        ? this.company.companyFinancials.operatingCosts
+        : null,
+      profitMargin: this.company
+        ? this.company.companyFinancials.profitMargin
+        : null
     });
-
-    toggleFormFieldsState(false, this.companyDetailForm);
   }
 
   onClickSave() {

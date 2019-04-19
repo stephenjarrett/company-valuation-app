@@ -48,7 +48,6 @@ export class BarChartComponent implements OnInit, OnChanges {
   @Input() public dataType;
   @Input() public chartData: any;
   colorScheme = primaryColorScheme;
-  below = 'below';
   dataSet = [
     {
       name: '',
@@ -67,6 +66,7 @@ export class BarChartComponent implements OnInit, OnChanges {
 
   ngOnChanges() {
     if (this.chartData) {
+      // format data into proper ngx-charts dataSet format
       this.buildChartDataSet(this.chartData);
     }
   }
