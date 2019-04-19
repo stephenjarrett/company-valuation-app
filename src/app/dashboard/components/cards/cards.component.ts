@@ -16,7 +16,6 @@ export class CardsComponent implements OnInit, OnChanges {
   ngOnInit() {}
 
   ngOnChanges() {
-    // could use subject?
     this.filteredCompanies = this.targetCompanies;
   }
 

@@ -27,7 +27,7 @@ export class DashboardComponent implements OnInit {
 
   // TODO:
   // add ngUnsubscribes-takeUntil on destroy -> prevent memory leaks
-  // utilize replay subject for watching data changes?
+  // utilize behavior subject for watching data changes?
   // Add duplicate company name validator
   // email and number format validation
   // add toggle button to switch between line and bar graph
