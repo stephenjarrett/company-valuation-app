@@ -713,6 +713,96 @@
         "phone": 5554239493,
         "email": "john.doe@google.com"
       }
+    },
+    {
+      "status": "Researching",
+      "companyDetails": {
+        "companyName": "TestC",
+        "companyIndustry": "Aerospace",
+        "companySize": "51-200 employees",
+        "yearFounded": 2016,
+        "city": "Atlanta",
+        "state": "Georgia",
+        "description": "n/a"
+      },
+      "keyContact": {
+        "name": "Stephen Jarrett",
+        "email": "s@gmail.com",
+        "phone": 4235555555
+      },
+      "companyFinancials": {
+        "assets": [
+          {
+            "year": 2016,
+            "value": 10
+          },
+          {
+            "year": 2017,
+            "value": 11
+          },
+          {
+            "year": 2018,
+            "value": 15
+          }
+        ],
+        "liabilities": [
+          {
+            "year": 2016,
+            "value": 10
+          },
+          {
+            "year": 2017,
+            "value": 9
+          },
+          {
+            "year": 2018,
+            "value": 5
+          }
+        ],
+        "salesRevenue": [
+          {
+            "year": 2016,
+            "value": 20
+          },
+          {
+            "year": 2017,
+            "value": 30
+          },
+          {
+            "year": 2018,
+            "value": 44
+          }
+        ],
+        "operatingCosts": [
+          {
+            "year": 2016,
+            "value": 10
+          },
+          {
+            "year": 2017,
+            "value": 9
+          },
+          {
+            "year": 2018,
+            "value": 11
+          }
+        ],
+        "profitMargin": [
+          {
+            "year": 2016,
+            "value": 22
+          },
+          {
+            "year": 2017,
+            "value": 23
+          },
+          {
+            "year": 2018,
+            "value": 28
+          }
+        ]
+      },
+      "id": 9
     }
   ]
 }

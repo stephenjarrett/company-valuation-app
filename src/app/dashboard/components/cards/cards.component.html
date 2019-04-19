@@ -23,7 +23,7 @@
     <mat-card *ngFor="let company of filteredCompanies" class="company-card">
       <mat-card-header class="flex-column">
         <div class="h2 p-2">
-          <a [routerLink]="['./company', company.id]">
+          <a [routerLink]="['./companies', company.id]">
             {{ company?.companyDetails.companyName }}
           </a>
         </div>

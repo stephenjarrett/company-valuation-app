@@ -4,7 +4,7 @@ import { CompanyDetailsComponent } from './pages/company-details/company-details
 
 export const companyRoutes: Routes = [
   {
-    path: 'company',
+    path: 'companies',
     children: [
       {
         path: 'create',
