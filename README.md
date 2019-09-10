@@ -11,7 +11,7 @@ After installing the node modules you will need to execute 2 scripts to run the 
 # npm run json:server (mock back-end)
 # npm-start (angular ng-serve)
 
-Navigate to localhost:4200 and its good to good.
+Navigate to localhost:4200 and its good to go.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.7.
 
